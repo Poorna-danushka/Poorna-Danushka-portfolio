@@ -28,23 +28,25 @@ export function Hero() {
             <span className="h-px w-8 bg-accent" aria-hidden />
             {person.greeting}
           </motion.p>
-          <motion.h1
-            variants={fadeUp(reduced)}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: reduced ? 0 : 0.08 }}
-            className="mt-4 font-display text-3xl leading-[1.05] min-[380px]:text-4xl sm:text-6xl lg:text-7xl"
-          >
-            {person.name}
-          </motion.h1>
-          <motion.div
-            variants={scaleIn(reduced)}
-            initial="hidden"
-            animate="visible"
-            className="mt-6 w-full lg:hidden"
-          >
-            <ProfileMark />
-          </motion.div>
+          <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:gap-6 lg:block">
+            <motion.h1
+              variants={fadeUp(reduced)}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: reduced ? 0 : 0.08 }}
+              className="min-w-0 font-display text-3xl leading-[1.05] min-[380px]:text-4xl sm:text-6xl lg:text-7xl"
+            >
+              {person.name}
+            </motion.h1>
+            <motion.div
+              variants={scaleIn(reduced)}
+              initial="hidden"
+              animate="visible"
+              className="w-20 min-[380px]:w-24 sm:w-32 lg:hidden"
+            >
+              <ProfileMark />
+            </motion.div>
+          </div>
           <motion.p
             variants={fadeUp(reduced)}
             initial="hidden"
