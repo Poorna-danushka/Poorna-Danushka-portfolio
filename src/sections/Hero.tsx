@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowDownRight, ArrowRight, MapPin } from 'lucide-react'
+import { ArrowDown, ArrowDownRight, ArrowRight, CheckCircle2, MapPin } from 'lucide-react'
 import { motion } from 'motion/react'
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
@@ -72,8 +72,20 @@ export function Hero() {
             variants={fadeUp(reduced)}
             initial="hidden"
             animate="visible"
-            transition={{ delay: reduced ? 0 : 0.3 }}
+            transition={{ delay: reduced ? 0 : 0.28 }}
             className="mt-8 flex flex-wrap items-center gap-3"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent">
+              <CheckCircle2 size={14} aria-hidden />
+              Open to opportunities
+            </span>
+          </motion.div>
+          <motion.div
+            variants={fadeUp(reduced)}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: reduced ? 0 : 0.34 }}
+            className="flex flex-wrap items-center gap-3"
           >
             <Button onClick={() => scrollToId('projects')}>
               View My Work
