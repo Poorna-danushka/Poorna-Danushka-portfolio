@@ -15,7 +15,7 @@ export function Hero() {
   const { person } = portfolio
 
   return (
-    <section id="home" className="relative flex min-h-svh flex-col overflow-hidden pt-28">
+    <section id="home" className="relative flex min-h-svh flex-col overflow-hidden pt-24 sm:pt-28">
       <HeroBackdrop />
       <Container className="relative grid flex-1 items-center gap-12 pb-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:pb-8 lg:pt-6">
         <div>
@@ -85,7 +85,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             transition={{ delay: reduced ? 0 : 0.34 }}
-            className="flex flex-wrap items-center gap-3"
+            className="flex flex-col items-stretch gap-3 min-[380px]:flex-row min-[380px]:flex-wrap min-[380px]:items-center"
           >
             <Button onClick={() => scrollToId('projects')}>
               View My Work

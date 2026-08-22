@@ -22,7 +22,7 @@ export function Projects() {
           title="Featured Projects"
           description="The Elderly Care Management System is the primary full-stack system, followed by Orbit and other selected work."
         />
-        <div className="mt-8 flex flex-wrap items-center gap-2" aria-label="Filter projects by category">
+        <div className="mt-8 flex max-w-full flex-nowrap gap-2 overflow-x-auto pb-2" aria-label="Filter projects by category">
           {categories.map((category) => (
             <button
               key={category}

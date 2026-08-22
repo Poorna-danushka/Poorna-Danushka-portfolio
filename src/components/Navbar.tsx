@@ -36,7 +36,7 @@ export function Navbar() {
     >
       <div
         className={cn(
-          'mx-auto mt-3 max-w-6xl rounded-full border px-3 py-2 transition duration-300 sm:px-4',
+          'mx-2 mt-2 max-w-6xl rounded-full border px-2 py-2 transition duration-300 sm:mx-4 sm:mt-3 sm:px-4 lg:mx-auto',
           scrolled
             ? 'border-border bg-bg/85 shadow-lg backdrop-blur-xl'
             : 'border-transparent bg-bg/25 backdrop-blur-md',

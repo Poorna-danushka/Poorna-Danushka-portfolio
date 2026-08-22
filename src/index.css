@@ -47,6 +47,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background:
     radial-gradient(900px 420px at 85% -8%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 60%),
     radial-gradient(700px 380px at 0% 12%, color-mix(in oklab, var(--accent) 8%, transparent), transparent 55%),
