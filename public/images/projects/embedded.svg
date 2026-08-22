@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" fill="none">
+  <rect width="960" height="600" fill="#10151b"/>
+  <rect x="180" y="180" width="280" height="180" rx="16" stroke="#3ee0c8" stroke-width="3"/>
+  <circle cx="230" cy="230" r="10" fill="#3ee0c8"/>
+  <circle cx="270" cy="230" r="10" fill="#3ee0c8"/>
+  <circle cx="310" cy="230" r="10" fill="#ece8e0" fill-opacity="0.4"/>
+  <rect x="540" y="160" width="220" height="140" rx="12" fill="#ece8e0" fill-opacity="0.08"/>
+  <rect x="570" y="320" width="28" height="90" fill="#3ee0c8" fill-opacity="0.5"/>
+  <rect x="620" y="300" width="28" height="110" fill="#3ee0c8" fill-opacity="0.35"/>
+  <rect x="670" y="280" width="28" height="130" fill="#3ee0c8" fill-opacity="0.2"/>
+  <text x="72" y="92" font-family="Georgia, serif" font-size="22" fill="#ece8e0">Embedded / IoT</text>
+</svg>

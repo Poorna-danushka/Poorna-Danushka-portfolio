@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --color-bg: var(--bg);
+  --color-elevated: var(--elevated);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-glow: var(--glow);
+}
+
+:root {
+  --bg: #f3eee4;
+  --elevated: #fffcf6;
+  --fg: #14120e;
+  --muted: #5a554c;
+  --border: rgb(20 18 14 / 0.12);
+  --accent: #0c5f5a;
+  --accent-fg: #f4fffc;
+  --glow: rgb(12 95 90 / 0.22);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #07090c;
+  --elevated: #10151c;
+  --fg: #efeae1;
+  --muted: #a39c91;
+  --border: rgb(239 234 225 / 0.11);
+  --accent: #3ee0c8;
+  --accent-fg: #05211d;
+  --glow: rgb(62 224 200 / 0.2);
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(900px 420px at 85% -8%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 60%),
+    radial-gradient(700px 380px at 0% 12%, color-mix(in oklab, var(--accent) 8%, transparent), transparent 55%),
+    var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black 18%, transparent 74%);
+}
+
+.section-band {
+  background: color-mix(in oklab, var(--elevated) 55%, transparent);
+}
