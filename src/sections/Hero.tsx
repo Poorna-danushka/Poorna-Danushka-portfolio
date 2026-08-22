@@ -17,7 +17,7 @@ export function Hero() {
   return (
     <section id="home" className="relative flex min-h-svh flex-col overflow-hidden pt-24 sm:pt-28">
       <HeroBackdrop />
-      <Container className="relative grid flex-1 grid-rows-[auto_auto] items-start gap-12 pb-16 sm:gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:grid-rows-1 lg:items-center lg:gap-16 lg:pb-8 lg:pt-6">
+      <Container className="relative grid flex-1 grid-cols-[minmax(0,1fr)_minmax(7rem,0.72fr)] items-center gap-3 pb-16 sm:grid-cols-[minmax(0,1.15fr)_minmax(12rem,0.85fr)] sm:gap-8 lg:gap-16 lg:pb-8 lg:pt-6">
         <div>
           <motion.p
             variants={fadeUp(reduced)}
@@ -33,7 +33,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             transition={{ delay: reduced ? 0 : 0.08 }}
-            className="mt-4 font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl"
+            className="mt-4 font-display text-3xl leading-[1.05] min-[380px]:text-4xl sm:text-6xl lg:text-7xl"
           >
             {person.name}
           </motion.h1>
@@ -42,7 +42,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             transition={{ delay: reduced ? 0 : 0.16 }}
-            className="mt-5 text-lg text-muted sm:text-xl"
+            className="mt-4 text-sm text-muted min-[380px]:text-base sm:mt-5 sm:text-xl"
           >
             {person.shortTitle}
           </motion.p>
@@ -51,7 +51,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             transition={{ delay: reduced ? 0 : 0.22 }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+            className="mt-5 max-w-xl text-xs leading-relaxed text-muted min-[380px]:text-sm sm:mt-6 sm:text-lg"
           >
             {person.heroDescription}
           </motion.p>
@@ -110,7 +110,7 @@ export function Hero() {
           variants={scaleIn(reduced)}
           initial="hidden"
           animate="visible"
-          className="w-full min-w-0 lg:order-none"
+          className="w-full min-w-0 self-center lg:order-none"
         >
           <ProfileMark />
         </motion.div>

@@ -5,7 +5,7 @@ export function ProfileMark() {
   const alt = portfolio.person.profileImageAlt ?? `${portfolio.person.name} portrait placeholder`
 
   return (
-    <div className="relative mx-auto w-full max-w-[15rem] min-[380px]:max-w-[17rem] sm:max-w-sm lg:max-w-md">
+    <div className="relative mx-auto w-full max-w-[8rem] min-[380px]:max-w-[10rem] sm:max-w-sm lg:max-w-md">
       <div className="absolute -inset-2 rounded-[2.75rem] bg-accent/20 blur-2xl sm:-inset-4 sm:blur-3xl" aria-hidden />
       <div className="relative overflow-hidden rounded-[2.25rem] border border-border bg-elevated shadow-[0_30px_80px_var(--glow)]">
         {src ? (
