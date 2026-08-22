@@ -42,7 +42,7 @@ export function Hero() {
               variants={scaleIn(reduced)}
               initial="hidden"
               animate="visible"
-              className="w-24 min-[380px]:w-28 sm:w-36 lg:hidden"
+              className="relative -mt-2 w-24 min-[380px]:w-28 sm:-mt-3 sm:w-36 lg:hidden"
             >
               <ProfileMark />
             </motion.div>
