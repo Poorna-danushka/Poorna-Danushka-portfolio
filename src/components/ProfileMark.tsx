@@ -6,7 +6,7 @@ export function ProfileMark() {
 
   return (
     <div className="relative mx-auto w-full max-w-md">
-      <div className="absolute -inset-4 rounded-[2.75rem] bg-accent/20 blur-3xl" aria-hidden />
+      <div className="absolute -inset-2 rounded-[2.75rem] bg-accent/20 blur-2xl sm:-inset-4 sm:blur-3xl" aria-hidden />
       <div className="relative overflow-hidden rounded-[2.25rem] border border-border bg-elevated shadow-[0_30px_80px_var(--glow)]">
         {src ? (
           <img

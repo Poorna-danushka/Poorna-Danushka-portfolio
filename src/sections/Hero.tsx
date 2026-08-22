@@ -15,9 +15,9 @@ export function Hero() {
   const { person } = portfolio
 
   return (
-    <section id="home" className="relative flex min-h-svh flex-col overflow-hidden pt-28">
+    <section id="home" className="relative flex min-h-svh flex-col overflow-hidden pt-24 sm:pt-28">
       <HeroBackdrop />
-      <Container className="relative grid flex-1 items-center gap-12 pb-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:pb-8 lg:pt-6">
+      <Container className="relative grid flex-1 grid-cols-1 items-start gap-8 pb-16 sm:gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16 lg:pb-8 lg:pt-6">
         <div>
           <motion.p
             variants={fadeUp(reduced)}
@@ -28,21 +28,31 @@ export function Hero() {
             <span className="h-px w-8 bg-accent" aria-hidden />
             {person.greeting}
           </motion.p>
-          <motion.h1
-            variants={fadeUp(reduced)}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: reduced ? 0 : 0.08 }}
-            className="mt-4 font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl"
-          >
-            {person.name}
-          </motion.h1>
+          <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:gap-6 lg:block">
+            <motion.h1
+              variants={fadeUp(reduced)}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: reduced ? 0 : 0.08 }}
+              className="min-w-0 font-display text-3xl leading-[1.05] min-[380px]:text-4xl sm:text-6xl lg:text-7xl"
+            >
+              {person.name}
+            </motion.h1>
+            <motion.div
+              variants={scaleIn(reduced)}
+              initial="hidden"
+              animate="visible"
+              className="relative -mt-2 w-24 min-[380px]:w-28 sm:-mt-3 sm:w-36 lg:hidden"
+            >
+              <ProfileMark />
+            </motion.div>
+          </div>
           <motion.p
             variants={fadeUp(reduced)}
             initial="hidden"
             animate="visible"
             transition={{ delay: reduced ? 0 : 0.16 }}
-            className="mt-5 text-lg text-muted sm:text-xl"
+            className="mt-4 text-sm text-muted min-[380px]:text-base sm:mt-5 sm:text-xl"
           >
             {person.shortTitle}
           </motion.p>
@@ -51,7 +61,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             transition={{ delay: reduced ? 0 : 0.22 }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+            className="mt-5 max-w-xl text-xs leading-relaxed text-muted min-[380px]:text-sm sm:mt-6 sm:text-lg"
           >
             {person.heroDescription}
           </motion.p>
@@ -60,20 +70,20 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             transition={{ delay: reduced ? 0 : 0.26 }}
-            className="mt-5 flex flex-wrap gap-2 text-sm text-muted"
+            className="mt-6 flex max-w-full flex-wrap gap-2 text-sm text-muted sm:mt-7"
           >
             <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-elevated/70 px-3 py-1">
               <MapPin size={14} className="text-accent" />
               {person.location}
             </span>
-            <span className="rounded-full border border-border bg-elevated/70 px-3 py-1">{person.university}</span>
+            <span className="max-w-full rounded-full border border-border bg-elevated/70 px-3 py-1 text-pretty">{person.university}</span>
           </motion.div>
           <motion.div
             variants={fadeUp(reduced)}
             initial="hidden"
             animate="visible"
-            transition={{ delay: reduced ? 0 : 0.3 }}
-            className="mt-8 flex flex-wrap items-center gap-3"
+            transition={{ delay: reduced ? 0 : 0.34 }}
+            className="mt-6 flex flex-col items-stretch gap-3 min-[380px]:flex-row min-[380px]:flex-wrap min-[380px]:items-center sm:mt-8"
           >
             <Button onClick={() => scrollToId('projects')}>
               View My Work
@@ -94,7 +104,12 @@ export function Hero() {
             <SocialLinks />
           </motion.div>
         </div>
-        <motion.div variants={scaleIn(reduced)} initial="hidden" animate="visible">
+        <motion.div
+          variants={scaleIn(reduced)}
+          initial="hidden"
+          animate="visible"
+          className="hidden w-full min-w-0 self-center lg:block lg:order-none"
+        >
           <ProfileMark />
         </motion.div>
       </Container>

@@ -69,13 +69,13 @@ export function Contact() {
             <ContactRow
               icon={Github}
               label="GitHub"
-              value={isPlaceholder(portfolio.contact.github) ? 'YOUR_GITHUB_URL' : portfolio.contact.github}
+              value="GitHub profile"
               href={github}
             />
             <ContactRow
               icon={Linkedin}
               label="LinkedIn"
-              value={isPlaceholder(portfolio.contact.linkedin) ? 'YOUR_LINKEDIN_URL' : portfolio.contact.linkedin}
+              value="LinkedIn profile"
               href={linkedin}
             />
           </div>

@@ -15,7 +15,7 @@ export const portfolio: PortfolioData = {
       'I build modern, secure and scalable applications that solve real-world problems.',
     university: 'University of Moratuwa',
     degree: 'B.Sc. (Hons) in Information Technology',
-    location: 'Sri Lanka',
+    location: 'Gampaha, Sri Lanka',
     profileImage:
       'https://res.cloudinary.com/dbmjoemmg/image/upload/v1787297880/WhatsApp_Image_2026-08-21_at_13.01.28_tlf6bd.jpg',
     profileImageAlt: 'Poorna Danushka Jayasundara, arms crossed in a dark suit',
@@ -29,7 +29,7 @@ export const portfolio: PortfolioData = {
   contact: {
     email: 'poornadanushka2@gmail.com',
     phone: '076 113 7931',
-    location: 'Sri Lanka',
+    location: 'Gampaha, Sri Lanka',
     github: 'https://github.com/Poorna-danushka',
     linkedin: 'https://www.linkedin.com/in/poorna-danushka',
   },
