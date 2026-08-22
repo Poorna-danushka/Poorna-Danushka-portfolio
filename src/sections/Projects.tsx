@@ -15,14 +15,14 @@ export function Projects() {
   const visibleProjects = filter === 'All' ? portfolio.projects : portfolio.projects.filter((project) => project.category === filter)
 
   return (
-    <section id="projects" className="py-24 sm:py-32">
+    <section id="projects" className="py-16 sm:py-24 lg:py-32">
       <Container>
         <SectionHeading
           eyebrow="Selected work"
           title="Featured Projects"
           description="The Elderly Care Management System is the primary full-stack system, followed by Orbit and other selected work."
         />
-        <div className="mt-8 flex max-w-full flex-nowrap gap-2 overflow-x-auto pb-2" aria-label="Filter projects by category">
+        <div className="mt-6 flex max-w-full flex-wrap gap-2 sm:mt-8" aria-label="Filter projects by category">
           {categories.map((category) => (
             <button
               key={category}
@@ -30,7 +30,7 @@ export function Projects() {
               onClick={() => setFilter(category)}
               aria-pressed={filter === category}
               className={cn(
-                'rounded-full border px-4 py-2 text-sm font-semibold transition',
+                'rounded-full border px-3.5 py-1.5 text-xs font-semibold transition sm:px-4 sm:py-2 sm:text-sm',
                 filter === category ? 'border-accent bg-accent text-accent-fg' : 'border-border text-muted hover:border-accent/50 hover:text-fg',
               )}
             >
@@ -38,7 +38,7 @@ export function Projects() {
             </button>
           ))}
         </div>
-        <div className="mt-8 grid gap-8 lg:grid-cols-2">
+        <div className="mt-6 grid gap-6 sm:mt-8 sm:gap-8 lg:grid-cols-2">
           {visibleProjects.map((project) => (
             <ProjectCard key={project.id} project={project} onOpen={setActive} />
           ))}

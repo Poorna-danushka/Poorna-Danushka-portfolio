@@ -5,10 +5,10 @@ import { portfolio } from '../data/portfolio'
 
 export function Education() {
   return (
-    <section id="education" className="section-band py-24 sm:py-32">
+    <section id="education" className="section-band py-16 sm:py-24 lg:py-32">
       <Container>
         <SectionHeading eyebrow="Academic" title="Education" />
-        <div className="mt-12">
+        <div className="mt-8 sm:mt-12">
           <Timeline>
             {portfolio.education.map((entry, index) => (
               <TimelineItem

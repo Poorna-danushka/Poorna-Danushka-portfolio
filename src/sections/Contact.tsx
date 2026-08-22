@@ -45,13 +45,13 @@ export function Contact() {
   const email = resolveSocialHref('email', portfolio.contact.email)
 
   return (
-    <section id="contact" className="section-band py-24 sm:py-32">
+    <section id="contact" className="section-band py-16 sm:py-24 lg:py-32">
       <Container>
         <SectionHeading
           title="Let's Build Something Together"
           description="Have a project idea, collaboration opportunity, or just want to connect? Feel free to reach out."
         />
-        <div className="mt-12 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="mt-8 grid gap-6 sm:mt-12 sm:gap-8 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="space-y-3">
             <ContactRow
               icon={Mail}

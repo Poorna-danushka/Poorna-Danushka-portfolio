@@ -5,10 +5,10 @@ import { portfolio } from '../data/portfolio'
 
 export function Journey() {
   return (
-    <section id="journey" className="section-band py-24 sm:py-32">
+    <section id="journey" className="section-band py-16 sm:py-24 lg:py-32">
       <Container>
         <SectionHeading eyebrow="Path" title="My Journey" />
-        <div className="mt-12">
+        <div className="mt-8 sm:mt-12">
           <Timeline>
             {portfolio.journey.map((entry, index) => (
               <TimelineItem
