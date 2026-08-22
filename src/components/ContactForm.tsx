@@ -13,8 +13,10 @@ export function ContactForm() {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const form = event.currentTarget
+    if (!form.reportValidity()) return
     const data = new FormData(form)
     setStatus('sending')
+    setMessage('')
 
     try {
       const result = await submitContact({
@@ -33,7 +35,11 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 rounded-3xl border border-border bg-elevated/80 p-6">
+    <form onSubmit={onSubmit} className="flex flex-col gap-5 rounded-3xl border border-border bg-elevated/80 p-5 sm:p-6" noValidate={false}>
+      <div>
+        <p className="text-lg font-semibold text-fg">Send a message</p>
+        <p className="mt-1 text-sm leading-relaxed text-muted">Tell me a little about your idea and I&apos;ll get back to you soon.</p>
+      </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm font-medium">
           Name
@@ -46,14 +52,14 @@ export function ContactForm() {
       </div>
       <label className="block text-sm font-medium">
         Subject
-        <input className={`${fieldClass} mt-2`} name="subject" type="text" required />
+        <input className={`${fieldClass} mt-2`} name="subject" type="text" autoComplete="off" placeholder="What would you like to build?" required />
       </label>
       <label className="block text-sm font-medium">
         Message
-        <textarea className={`${fieldClass} mt-2 min-h-36 resize-y`} name="message" required />
+        <textarea className={`${fieldClass} mt-2 min-h-36 resize-y`} name="message" placeholder="Share your project goals, timeline, or questions..." required />
       </label>
       <Button type="submit" disabled={status === 'sending'}>
-        <Send size={16} />
+        <Send size={16} aria-hidden />
         {status === 'sending' ? 'Sending…' : 'Send Message'}
       </Button>
       {message ? (
