@@ -17,7 +17,7 @@ export function Hero() {
   return (
     <section id="home" className="relative flex min-h-svh flex-col overflow-hidden pt-24 sm:pt-28">
       <HeroBackdrop />
-      <Container className="relative grid flex-1 grid-cols-[minmax(0,1fr)_minmax(7rem,0.72fr)] items-center gap-3 pb-16 sm:grid-cols-[minmax(0,1.15fr)_minmax(12rem,0.85fr)] sm:gap-8 lg:gap-16 lg:pb-8 lg:pt-6">
+      <Container className="relative grid flex-1 grid-cols-1 items-start gap-8 pb-16 sm:gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16 lg:pb-8 lg:pt-6">
         <div>
           <motion.p
             variants={fadeUp(reduced)}
@@ -37,6 +37,14 @@ export function Hero() {
           >
             {person.name}
           </motion.h1>
+          <motion.div
+            variants={scaleIn(reduced)}
+            initial="hidden"
+            animate="visible"
+            className="mt-6 w-full lg:hidden"
+          >
+            <ProfileMark />
+          </motion.div>
           <motion.p
             variants={fadeUp(reduced)}
             initial="hidden"
@@ -110,7 +118,7 @@ export function Hero() {
           variants={scaleIn(reduced)}
           initial="hidden"
           animate="visible"
-          className="w-full min-w-0 self-center lg:order-none"
+          className="hidden w-full min-w-0 self-center lg:block lg:order-none"
         >
           <ProfileMark />
         </motion.div>
