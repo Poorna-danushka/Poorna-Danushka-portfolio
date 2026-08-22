@@ -17,7 +17,7 @@ export function Hero() {
   return (
     <section id="home" className="relative flex min-h-svh flex-col overflow-hidden pt-24 sm:pt-28">
       <HeroBackdrop />
-      <Container className="relative grid flex-1 items-center gap-12 pb-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:pb-8 lg:pt-6">
+      <Container className="relative grid flex-1 items-center gap-10 pb-16 sm:gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:pb-8 lg:pt-6">
         <div>
           <motion.p
             variants={fadeUp(reduced)}
