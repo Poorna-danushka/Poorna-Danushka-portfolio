@@ -70,20 +70,20 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             transition={{ delay: reduced ? 0 : 0.26 }}
-            className="mt-5 flex flex-wrap gap-2 text-sm text-muted"
+            className="mt-6 flex max-w-full flex-wrap gap-2 text-sm text-muted sm:mt-7"
           >
             <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-elevated/70 px-3 py-1">
               <MapPin size={14} className="text-accent" />
               {person.location}
             </span>
-            <span className="rounded-full border border-border bg-elevated/70 px-3 py-1">{person.university}</span>
+            <span className="max-w-full rounded-full border border-border bg-elevated/70 px-3 py-1 text-pretty">{person.university}</span>
           </motion.div>
           <motion.div
             variants={fadeUp(reduced)}
             initial="hidden"
             animate="visible"
             transition={{ delay: reduced ? 0 : 0.34 }}
-            className="flex flex-col items-stretch gap-3 min-[380px]:flex-row min-[380px]:flex-wrap min-[380px]:items-center"
+            className="mt-6 flex flex-col items-stretch gap-3 min-[380px]:flex-row min-[380px]:flex-wrap min-[380px]:items-center sm:mt-8"
           >
             <Button onClick={() => scrollToId('projects')}>
               View My Work
