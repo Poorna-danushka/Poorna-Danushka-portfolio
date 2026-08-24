@@ -55,75 +55,98 @@ export function ProjectModal({ project, onClose }: Props) {
           </button>
         </div>
 
-        <img
-          src={project.image}
-          alt={project.imageAlt}
-          className="mt-6 aspect-[16/9] w-full rounded-2xl object-cover"
-        />
+        <div className="mt-6 flex w-full items-center justify-center overflow-hidden rounded-2xl border border-border">
+          <img
+            src={project.image}
+            alt={project.imageAlt}
+            className="h-auto w-full object-contain"
+          />
+        </div>
 
-        <section className="mt-6 space-y-5 text-sm leading-relaxed text-muted">
+        <section className="mt-6 space-y-6 text-sm leading-relaxed text-muted">
+          {/* Role Pill Banner */}
+          {project.role ? (
+            <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-accent/30 bg-accent/5 px-4 py-3">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Key Role</span>
+              <span className="font-semibold text-fg text-sm">{project.role}</span>
+            </div>
+          ) : null}
+
+          {/* Overview */}
           <div>
-            <h4 className="text-base font-semibold text-fg">Project overview</h4>
-            <p className="mt-2">{project.overview}</p>
+            <h4 className="text-sm font-semibold uppercase tracking-[0.16em] text-fg">Project Overview</h4>
+            <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">{project.overview}</p>
           </div>
-          {project.problem ? (
+
+          {/* Key Impact & Contributions */}
+          {project.myContributions && project.myContributions.length > 0 ? (
             <div>
-              <h4 className="text-base font-semibold text-fg">Problem</h4>
-              <p className="mt-2">{project.problem}</p>
+              <h4 className="text-sm font-semibold uppercase tracking-[0.16em] text-fg">Key Contributions & Architecture</h4>
+              <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+                {project.myContributions.map((contrib, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5 rounded-2xl border border-border bg-bg/60 p-3.5 text-xs sm:text-sm text-fg leading-relaxed">
+                    <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                    <span>{contrib}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ) : null}
-          {project.solution ? (
-            <div>
-              <h4 className="text-base font-semibold text-fg">Solution</h4>
-              <p className="mt-2">{project.solution}</p>
+
+          {/* Problem & Solution 2-Column Card */}
+          {project.problem || project.solution ? (
+            <div className="grid gap-3 sm:grid-cols-2">
+              {project.problem ? (
+                <div className="rounded-2xl border border-border bg-bg/50 p-4">
+                  <h5 className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">The Challenge</h5>
+                  <p className="mt-2 text-xs sm:text-sm text-fg leading-relaxed">{project.problem}</p>
+                </div>
+              ) : null}
+              {project.solution ? (
+                <div className="rounded-2xl border border-accent/25 bg-accent/[0.04] p-4">
+                  <h5 className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">The Solution</h5>
+                  <p className="mt-2 text-xs sm:text-sm text-fg leading-relaxed">{project.solution}</p>
+                </div>
+              ) : null}
             </div>
           ) : null}
+
+          {/* Technologies Stack */}
           {project.technologies.length > 0 ? (
             <div>
-              <h4 className="text-base font-semibold text-fg">Technologies</h4>
-              <ul className="mt-2 flex flex-wrap gap-2">
+              <h4 className="text-sm font-semibold uppercase tracking-[0.16em] text-fg">Core Technologies</h4>
+              <ul className="mt-2.5 flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
-                  <li key={tech} className="rounded-full border border-border px-3 py-1 text-fg">
+                  <li key={tech} className="rounded-lg border border-border bg-bg/80 px-3 py-1 text-xs font-medium text-fg">
                     {tech}
                   </li>
                 ))}
               </ul>
             </div>
           ) : null}
-          {project.features.length > 0 ? (
-            <div>
-              <h4 className="text-base font-semibold text-fg">Key features</h4>
-              <ul className="mt-2 grid gap-2 sm:grid-cols-2">
-                {project.features.map((feature) => (
-                  <li key={feature} className="rounded-2xl border border-border bg-bg/50 px-3 py-2 text-fg">
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-          {project.challenges ? (
-            <div>
-              <h4 className="text-base font-semibold text-fg">Challenges</h4>
-              <p className="mt-2">{project.challenges}</p>
-            </div>
-          ) : null}
+
+          {/* Learnings / Takeaways */}
           {project.learnings ? (
-            <div>
-              <h4 className="text-base font-semibold text-fg">What I learned</h4>
-              <p className="mt-2">{project.learnings}</p>
+            <div className="rounded-2xl border border-border bg-bg/40 p-4">
+              <h5 className="text-xs font-semibold uppercase tracking-[0.16em] text-fg">Engineering Learnings</h5>
+              <p className="mt-1.5 text-xs sm:text-sm text-muted leading-relaxed">{project.learnings}</p>
             </div>
           ) : null}
         </section>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Button href={github} external disabled={!github} ariaLabel="GitHub">
-            <Github size={16} />
-            GitHub
-          </Button>
-          <Button href={live} variant="secondary" external disabled={!live} ariaLabel="Live demo">
-            <ExternalLink size={16} />
-            Live Demo
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-5">
+          <div className="flex flex-wrap gap-2.5">
+            <Button href={github} external disabled={!github} ariaLabel="GitHub">
+              <Github size={16} />
+              GitHub
+            </Button>
+            <Button href={live} variant="secondary" external disabled={!live} ariaLabel="Live demo">
+              <ExternalLink size={16} />
+              Live Demo
+            </Button>
+          </div>
+          <Button variant="ghost" onClick={onClose} ariaLabel="Close dialog">
+            Close
           </Button>
         </div>
       </div>

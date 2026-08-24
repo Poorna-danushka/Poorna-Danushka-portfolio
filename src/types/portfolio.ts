@@ -67,6 +67,8 @@ export type Project = {
   title: string
   year: string
   category: string
+  role?: string
+  myContributions?: string[]
   description: string
   overview: string
   problem: string

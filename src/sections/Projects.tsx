@@ -16,13 +16,13 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-16 sm:py-24 lg:py-32">
-      <Container>
+      <Container className="max-w-7xl">
         <SectionHeading
           eyebrow="Selected work"
           title="Featured Projects"
-          description="The Elderly Care Management System is the primary full-stack system, followed by Orbit and other selected work."
+          description="Explore a curated showcase of full-stack web platforms, software engineering systems, and embedded IoT projects built with modern architectures."
         />
-        <div className="mt-6 flex max-w-full flex-wrap gap-2 sm:mt-8" aria-label="Filter projects by category">
+        <div className="mt-6 flex max-w-full flex-wrap gap-2.5 sm:mt-8" aria-label="Filter projects by category">
           {categories.map((category) => (
             <button
               key={category}
@@ -30,15 +30,17 @@ export function Projects() {
               onClick={() => setFilter(category)}
               aria-pressed={filter === category}
               className={cn(
-                'rounded-full border px-3.5 py-1.5 text-xs font-semibold transition sm:px-4 sm:py-2 sm:text-sm',
-                filter === category ? 'border-accent bg-accent text-accent-fg' : 'border-border text-muted hover:border-accent/50 hover:text-fg',
+                'rounded-full border px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-200',
+                filter === category
+                  ? 'border-accent bg-accent text-accent-fg shadow-sm'
+                  : 'border-border bg-elevated/40 text-muted hover:border-accent/40 hover:text-fg',
               )}
             >
               {category}
             </button>
           ))}
         </div>
-        <div className="mt-6 grid gap-6 sm:mt-8 sm:gap-8 lg:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 items-stretch gap-6 sm:mt-10 md:grid-cols-2 lg:gap-8">
           {visibleProjects.map((project) => (
             <ProjectCard key={project.id} project={project} onOpen={setActive} />
           ))}

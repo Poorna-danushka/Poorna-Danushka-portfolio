@@ -17,70 +17,117 @@ export function ProjectCard({ project, onOpen }: Props) {
   return (
     <article
       className={cn(
-        'group relative overflow-hidden rounded-3xl border border-border bg-elevated/80 transition duration-300',
-        'hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_20px_50px_var(--glow)] motion-reduce:transform-none',
-        featured && 'lg:col-span-2 lg:grid lg:grid-cols-2',
+        'group relative flex h-full flex-col overflow-hidden rounded-2xl sm:rounded-3xl border border-border bg-elevated/90 backdrop-blur-sm transition-all duration-300',
+        'hover:-translate-y-1.5 hover:border-accent/45 hover:shadow-[0_20px_45px_var(--glow)] motion-reduce:transform-none',
       )}
     >
-      {featured ? (
-        <p className="absolute left-4 top-4 z-10 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-fg">
-          Featured
-        </p>
-      ) : null}
-      <div className={cn('overflow-hidden', featured ? 'aspect-[16/10] lg:aspect-auto lg:h-full' : 'aspect-[16/10]')}>
+      {/* Wider Full-bleed Media Container */}
+      <div className="relative aspect-[16/8] w-full overflow-hidden border-b border-border/50 bg-bg/50">
         <img
           src={project.image}
           alt={project.imageAlt}
           loading="lazy"
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105 motion-reduce:transform-none"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
         />
-      </div>
-      <div className="flex flex-col space-y-4 p-6 lg:justify-center">
-        <div className="flex items-center justify-between gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-          <span>{project.number}</span>
-          <span className="text-right">
-            {project.year} · {project.category}
+
+        {/* Ambient Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+        {/* Top Badges */}
+        <div className="absolute left-3.5 right-3.5 top-3 flex items-center justify-between gap-2 pointer-events-none">
+          <span className="inline-flex items-center rounded-full bg-black/60 px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-white backdrop-blur-md border border-white/15 shadow-sm">
+            {project.number}
+          </span>
+          {featured ? (
+            <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2.5 py-0.5 text-[11px] font-semibold text-accent-fg shadow-sm">
+              Featured
+            </span>
+          ) : (
+            <span className="inline-flex items-center rounded-full bg-black/60 px-2.5 py-0.5 text-[11px] font-medium text-white/90 backdrop-blur-md border border-white/15 shadow-sm">
+              {project.category}
+            </span>
+          )}
+        </div>
+
+        {/* Year Pill */}
+        <div className="absolute bottom-2.5 right-3.5 pointer-events-none">
+          <span className="inline-flex items-center rounded-md bg-black/60 px-2 py-0.5 text-[11px] font-semibold text-white/90 backdrop-blur-md border border-white/15">
+            {project.year}
           </span>
         </div>
-        <h3 className="font-display text-2xl leading-tight sm:text-3xl">{project.title}</h3>
-        <p className="text-sm leading-relaxed text-muted sm:text-base">{project.description}</p>
-        {project.technologies.length > 0 ? (
-          <ul className="flex flex-wrap gap-2">
-            {project.technologies.map((tech) => (
-              <li key={tech} className="rounded-full border border-border bg-bg/70 px-2.5 py-1 text-xs text-fg">
-                {tech}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-xs text-muted">Technologies can be added in the data file.</p>
-        )}
-        <div className="flex flex-wrap gap-2 pt-2">
+      </div>
+
+      {/* Card Content - Compact & Streamlined */}
+      <div className="flex flex-1 flex-col justify-between p-4.5 sm:p-5.5">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+            <span>{project.category}</span>
+          </div>
+
+          <h3 className="font-display text-lg sm:text-xl font-bold leading-snug text-fg transition-colors group-hover:text-accent line-clamp-1">
+            {project.title}
+          </h3>
+
+          <p className="text-xs sm:text-sm leading-relaxed text-muted line-clamp-2 min-h-[2.5rem]">
+            {project.description}
+          </p>
+
+          {/* Technologies Chips */}
+          <div className="pt-0.5">
+            {project.technologies.length > 0 ? (
+              <ul className="flex flex-wrap gap-1.5" aria-label="Technologies used">
+                {project.technologies.slice(0, 4).map((tech) => (
+                  <li
+                    key={tech}
+                    className="rounded-md border border-border/80 bg-bg/75 px-2 py-0.5 text-[11px] font-medium text-fg/90"
+                  >
+                    {tech}
+                  </li>
+                ))}
+                {project.technologies.length > 4 ? (
+                  <li className="rounded-md border border-border/60 bg-bg/40 px-1.5 py-0.5 text-[11px] font-medium text-muted">
+                    +{project.technologies.length - 4} more
+                  </li>
+                ) : null}
+              </ul>
+            ) : null}
+          </div>
+        </div>
+
+        {/* Card Actions Footer */}
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-border/50 pt-3.5">
+          <div className="flex items-center gap-1.5">
+            <Button
+              variant="secondary"
+              href={github}
+              external
+              disabled={!github}
+              className="px-3 py-1.5 text-xs opacity-90 group-hover:opacity-100"
+              ariaLabel={github ? `${project.title} GitHub repository` : `${project.title} GitHub not available`}
+            >
+              <Github size={14} />
+              <span className="hidden min-[380px]:inline">GitHub</span>
+            </Button>
+            <Button
+              variant="secondary"
+              href={live}
+              external
+              disabled={!live}
+              className="px-3 py-1.5 text-xs opacity-90 group-hover:opacity-100"
+              ariaLabel={live ? `${project.title} live demo` : `${project.title} live demo not available`}
+            >
+              <ExternalLink size={14} />
+              <span className="hidden min-[380px]:inline">Live</span>
+            </Button>
+          </div>
+
           <Button
-            variant="secondary"
-            href={github}
-            external
-            disabled={!github}
-            className="opacity-90 group-hover:opacity-100"
-            ariaLabel={github ? `${project.title} GitHub` : `${project.title} GitHub not configured`}
+            variant="primary"
+            onClick={() => onOpen(project)}
+            className="px-3.5 py-1.5 text-xs sm:text-sm font-semibold opacity-95 group-hover:opacity-100 shadow-sm"
           >
-            <Github size={16} />
-            GitHub
-          </Button>
-          <Button
-            variant="secondary"
-            href={live}
-            external
-            disabled={!live}
-            className="opacity-90 group-hover:opacity-100"
-            ariaLabel={live ? `${project.title} live demo` : `${project.title} live demo not configured`}
-          >
-            <ExternalLink size={16} />
-            Live Demo
-          </Button>
-          <Button variant="primary" onClick={() => onOpen(project)} className="opacity-90 group-hover:opacity-100">
-            View Details
-            <ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span>Details</span>
+            <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Button>
         </div>
       </div>
