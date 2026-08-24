@@ -1,5 +1,5 @@
 import { ArrowUpRight, ExternalLink } from 'lucide-react'
-import { Github } from './icons'
+import { Github, Linkedin } from './icons'
 import type { Project } from '../types/portfolio'
 import { cn, isPlaceholder } from '../lib/utils'
 import { Button } from './Button'
@@ -13,6 +13,7 @@ export function ProjectCard({ project, onOpen }: Props) {
   const github = isPlaceholder(project.links.github) ? undefined : project.links.github
   const live = isPlaceholder(project.links.live) ? undefined : project.links.live
   const featured = Boolean(project.featured)
+  const isLinkedIn = Boolean(live && (live.includes('linkedin.com') || live.includes('lnkd.in')))
 
   return (
     <article
@@ -114,10 +115,10 @@ export function ProjectCard({ project, onOpen }: Props) {
               external
               disabled={!live}
               className="px-3 py-1.5 text-xs opacity-90 group-hover:opacity-100"
-              ariaLabel={live ? `${project.title} live demo` : `${project.title} live demo not available`}
+              ariaLabel={live ? (isLinkedIn ? `${project.title} LinkedIn post` : `${project.title} live demo`) : `${project.title} live link not available`}
             >
-              <ExternalLink size={14} />
-              <span className="hidden min-[380px]:inline">Live</span>
+              {isLinkedIn ? <Linkedin size={14} /> : <ExternalLink size={14} />}
+              <span className="hidden min-[380px]:inline">{isLinkedIn ? 'LinkedIn' : 'Live'}</span>
             </Button>
           </div>
 

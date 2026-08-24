@@ -325,68 +325,100 @@ export const portfolio: PortfolioData = {
       imageAlt: 'Visual preview for the Orbit Workspace project management platform',
     },
     {
-      id: 'chess',
+      id: 'fitness-app',
       number: '03',
-      title: 'Chess Game',
-      year: '2024',
-      category: 'Python / Game Dev',
+      title: 'FitPulse - Fitness & Workout Web Platform',
+      year: '2025',
+      category: 'Full-Stack Web App',
+      role: 'Full-Stack Developer',
       description:
-        'A desktop chess application developed with Python and Pygame, featuring chess rule logic, interactive board rendering, and turn-based flow.',
+        'A modern fitness and workout tracking web application designed to help users log workouts, monitor exercise routines, and track fitness milestones.',
       overview:
-        'A desktop chess experience built to practice game rules, board interaction, and graphical presentation in Python.',
+        'FitPulse is a responsive fitness and exercise tracking platform developed to streamline daily workout management, routine planning, and training regimen analytics with an intuitive, mobile-friendly interface.',
+      myContributions: [
+        'Workout & Routine Tracker: Built workout logging workflows, exercise directory filtering, and customizable training schedule plans.',
+        'Analytics & Progress Metrics: Designed visual tracking for personal fitness goals, workout frequency, and performance progress statistics.',
+        'Interactive UI & State Management: Developed an ultra-responsive frontend with modern UI components and smooth user interactions.',
+        'REST API & Data Persistence: Integrated backend services and database persistence for secure workout history and user profiles.',
+      ],
       problem:
-        'Implementing complete chess rules and a clear graphical board requires careful state management and user interaction design.',
+        'Individuals often struggle with maintaining consistent fitness habits due to cumbersome tracking tools, lack of routine organization, and scattered workout records.',
       solution:
-        'A Pygame-based application that combines game logic with a graphical interface for local play.',
-      challenges:
-        'Encoding piece movement, turn flow, and board rendering in a way that stays readable and playable.',
+        'A streamlined web application providing organized workout schedules, exercise guidance, and progress tracking in a clean, accessible interface.',
+      challenges: '',
       learnings:
-        'Strengthened my understanding of state machines and 2D rendering loops by implementing chess rules, turn logic, and an interactive board with Pygame.',
-      technologies: ['Python', 'Pygame', 'OOP', 'Game Physics'],
+        'Mastered modular web component design, responsive UI architectures, and dynamic fitness telemetry state management.',
+      technologies: [
+        'React',
+        'TypeScript',
+        'Tailwind CSS',
+        'Node.js',
+        'REST API',
+        'JavaScript',
+      ],
       features: [
-        'Standard chess rule calculation & move validation',
-        'Interactive 2D graphical board rendering with Pygame',
-        'Turn-based state management & move history',
-        'Custom visual pieces and responsive player controls',
+        'Comprehensive Exercise & Routine Library',
+        'Daily Workout Logging & Set/Rep Tracking',
+        'Fitness Progress Analytics & Milestone Tracking',
+        'Responsive Mobile-First Interface',
       ],
       links: {
-        github: 'YOUR_CHESS_GITHUB_URL',
-        live: 'YOUR_CHESS_LIVE_URL',
-      },
-      image: '/images/projects/chess.svg',
-      imageAlt: 'Visual preview for the Chess Game project',
-    },
-    {
-      id: 'embedded',
-      number: '04',
-      title: 'IoT & Embedded Systems',
-      year: '2024',
-      category: 'Embedded Systems',
-      description:
-        'Microcontroller automation and hardware interfacing projects built with Arduino, Raspberry Pi, PCA9685 PWM drivers, sensors, and telemetry pipelines.',
-      overview:
-        'Practical IoT and embedded engineering projects focusing on hardware control, telemetry acquisition, servo drivers, and bus communication.',
-      problem:
-        'Interfacing multi-node hardware sensors with precise timing constraints requires low-level drivers, signal filtering, and robust communication buses.',
-      solution:
-        'Engineered modular embedded firmware with C/C++ and Python to interface with sensors, PCA9685 PWM drivers, and telemetry loggers.',
-      challenges:
-        'Managing I2C/SPI bus stability, handling power distribution for high-torque actuators, and synchronizing real-time telemetry streams.',
-      learnings:
-        'Deepened hands-on knowledge in microcontroller architectures, PWM signal modulation, bus protocols (I2C/UART/SPI), and Python hardware automation.',
-      technologies: ['Arduino', 'Raspberry Pi', 'PCA9685', 'Python', 'C/C++', 'I2C/UART'],
-      features: [
-        'Multi-channel PWM servo control & automation',
-        'Real-time sensor telemetry acquisition & processing',
-        'Hardware-to-software communication bridge',
-        'Automated telemetry logging and event triggers',
-      ],
-      links: {
-        github: 'YOUR_EMBEDDED_GITHUB_URL',
-        live: 'YOUR_EMBEDDED_LIVE_URL',
+        github: 'https://github.com/Poorna-danushka/fitness_app.git',
+        live: 'YOUR_FITNESS_LIVE_URL',
       },
       image: '/images/projects/embedded.svg',
-      imageAlt: 'Visual preview for embedded systems and IoT engineering work',
+      imageAlt: 'Visual preview for the FitPulse Fitness & Workout Platform project',
+    },
+    {
+      id: 'chess-robot',
+      number: '04',
+      title: 'Autonomous Chess-Playing Robot',
+      year: '2025',
+      category: 'Robotics & Embedded AI',
+      role: 'Computer Vision, UI & Embedded Control Co-Lead',
+      description:
+        'An integrated hardware-software robotics system combining computer vision, chess engine computation, and a 5-DOF robotic arm to autonomously play chess.',
+      overview:
+        'Developed as a first-year undergraduate hardware project for FIT EXPO at the University of Moratuwa. The autonomous system detects physical player moves via overhead computer vision, computes strategic moves with a chess engine, and physically executes them on the board using a 5-DOF robotic arm.',
+      myContributions: [
+        'Vision System & Board Calibration: Built overhead Raspberry Pi camera pipeline for board perspective correction, grid calibration, and color-based move detection.',
+        'Chess Engine & Real-Time UI: Integrated chess engine strategy computation and designed a real-time Python/Pygame graphical board for live move monitoring and debugging.',
+        'Robotic Arm Actuation: Programmed Arduino and PCA9685 PWM drivers to coordinate 5-DOF robotic arm kinematics with pre-calibrated servo angles for accurate piece manipulation.',
+        'Hardware-Software Co-Design: Contributed to custom PCB power management, noise-isolated signal distribution, and inter-microcontroller serial communication.',
+      ],
+      problem:
+        'Achieving reliable autonomous gameplay requires reconciling real-world vision variability (lighting, perspective distortion) with sub-millimeter robotic servo accuracy.',
+      solution:
+        'A closed-loop hardware-software pipeline: overhead camera vision → engine strategy calculation → serial protocol → 5-DOF robotic arm physical move execution.',
+      challenges: '',
+      learnings:
+        'Gained hands-on mastery in system-level robotics integration, OpenCV computer vision pipelines, multi-DOF servo kinematics, and hardware-software co-design.',
+      technologies: [
+        'Python',
+        'OpenCV (Computer Vision)',
+        'Pygame',
+        'Raspberry Pi',
+        'Arduino',
+        'PCA9685 PWM Driver',
+        '5-DOF Robotic Arm',
+        'Custom PCB',
+        'C/C++',
+        'UART/I2C',
+      ],
+      features: [
+        'Overhead Camera Board Calibration & Perspective Correction',
+        'Color-Based Chess Move Detection & State Validation',
+        'Autonomous Chess Engine Strategy Computation',
+        '5-DOF Robotic Arm Physical Piece Manipulation',
+        'Real-Time Python/Pygame Monitoring & Debugging UI',
+        'Custom PCB Power Management & Signal Distribution',
+      ],
+      links: {
+        github: 'https://github.com/Poorna-danushka/Hardware-Project---Chess-Navigator.git',
+        live: 'https://lnkd.in/p/gx78BSiv',
+      },
+      image: 'https://res.cloudinary.com/dbmjoemmg/image/upload/v1787595720/ChatGPT_Image_Aug_24_2026_11_51_23_PM_os8s22.png',
+      imageAlt: 'Visual preview for the Autonomous Chess-Playing Robot project',
     },
   ],
   form: {

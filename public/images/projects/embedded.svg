@@ -1,84 +1,63 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" fill="none">
   <defs>
-    <radialGradient id="iotGlow" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#113632" stop-opacity="0.85"/>
+    <radialGradient id="fitGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#143431" stop-opacity="0.85"/>
       <stop offset="60%" stop-color="#080d12" stop-opacity="0.95"/>
       <stop offset="100%" stop-color="#030508"/>
     </radialGradient>
-    <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1c2834"/>
-      <stop offset="100%" stop-color="#0f161e"/>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1b2834"/>
+      <stop offset="100%" stop-color="#0e151d"/>
     </linearGradient>
-    <linearGradient id="traceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="fitAccent" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#3ee0c8"/>
       <stop offset="100%" stop-color="#0c5f5a"/>
     </linearGradient>
-    <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glowPulse" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="12" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
   </defs>
 
-  <rect width="960" height="600" fill="url(#iotGlow)"/>
+  <!-- Background -->
+  <rect width="960" height="600" fill="url(#fitGlow)"/>
 
-  <!-- Background Circuit Lines -->
-  <g opacity="0.15" stroke="#3ee0c8" stroke-width="1.5">
-    <path d="M 80 120 H 260 L 320 180 H 420" />
-    <path d="M 80 480 H 220 L 300 400 H 420" />
-    <path d="M 880 120 H 700 L 640 180 H 540" />
-    <path d="M 880 480 H 740 L 660 400 H 540" />
-    <circle cx="80" cy="120" r="4" fill="#3ee0c8"/>
-    <circle cx="80" cy="480" r="4" fill="#3ee0c8"/>
-    <circle cx="880" cy="120" r="4" fill="#3ee0c8"/>
-    <circle cx="880" cy="480" r="4" fill="#3ee0c8"/>
+  <!-- Subtle Metric Grid Lines -->
+  <g opacity="0.08" stroke="#3ee0c8" stroke-width="1">
+    <line x1="0" y1="150" x2="960" y2="150"/>
+    <line x1="0" y1="300" x2="960" y2="300"/>
+    <line x1="0" y1="450" x2="960" y2="450"/>
+    <line x1="240" y1="0" x2="240" y2="600"/>
+    <line x1="480" y1="0" x2="480" y2="600"/>
+    <line x1="720" y1="0" x2="720" y2="600"/>
   </g>
 
-  <!-- Ambient Glow -->
-  <circle cx="480" cy="270" r="160" fill="#3ee0c8" opacity="0.14" filter="url(#glowEffect)"/>
+  <!-- Central Fitness Dashboard Card -->
+  <rect x="260" y="90" width="440" height="360" rx="24" fill="url(#cardGrad)" stroke="#3ee0c8" stroke-width="2" stroke-opacity="0.35"/>
 
-  <!-- Microcontroller Chip Base -->
-  <rect x="340" y="130" width="280" height="280" rx="28" fill="url(#chipGrad)" stroke="#3ee0c8" stroke-width="2" stroke-opacity="0.45"/>
-  <rect x="375" y="165" width="210" height="210" rx="16" fill="#090e13" stroke="#3ee0c8" stroke-width="1.2" stroke-opacity="0.3"/>
+  <!-- Pulse / Heart Rate Waveform Line -->
+  <path d="M 290 280 L 370 280 L 400 210 L 430 350 L 460 230 L 490 310 L 520 280 L 670 280" stroke="url(#fitAccent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#glowPulse)"/>
 
-  <!-- Chip Pins -->
-  <g fill="#3ee0c8" opacity="0.75">
-    <!-- Top Pins -->
-    <rect x="390" y="112" width="12" height="18" rx="3"/>
-    <rect x="430" y="112" width="12" height="18" rx="3"/>
-    <rect x="470" y="112" width="12" height="18" rx="3"/>
-    <rect x="510" y="112" width="12" height="18" rx="3"/>
-    <rect x="550" y="112" width="12" height="18" rx="3"/>
-    <!-- Bottom Pins -->
-    <rect x="390" y="410" width="12" height="18" rx="3"/>
-    <rect x="430" y="410" width="12" height="18" rx="3"/>
-    <rect x="470" y="410" width="12" height="18" rx="3"/>
-    <rect x="510" y="410" width="12" height="18" rx="3"/>
-    <rect x="550" y="410" width="12" height="18" rx="3"/>
-    <!-- Left Pins -->
-    <rect x="322" y="180" width="18" height="12" rx="3"/>
-    <rect x="322" y="220" width="18" height="12" rx="3"/>
-    <rect x="322" y="260" width="18" height="12" rx="3"/>
-    <rect x="322" y="300" width="18" height="12" rx="3"/>
-    <rect x="322" y="340" width="18" height="12" rx="3"/>
-    <!-- Right Pins -->
-    <rect x="620" y="180" width="18" height="12" rx="3"/>
-    <rect x="620" y="220" width="18" height="12" rx="3"/>
-    <rect x="620" y="260" width="18" height="12" rx="3"/>
-    <rect x="620" y="300" width="18" height="12" rx="3"/>
-    <rect x="620" y="340" width="18" height="12" rx="3"/>
+  <!-- Fitness Activity Rings / Stats -->
+  <circle cx="370" cy="180" r="38" stroke="#253545" stroke-width="8" fill="none"/>
+  <circle cx="370" cy="180" r="38" stroke="#3ee0c8" stroke-width="8" stroke-dasharray="180" stroke-dashoffset="50" stroke-linecap="round" fill="none"/>
+
+  <circle cx="480" cy="180" r="38" stroke="#253545" stroke-width="8" fill="none"/>
+  <circle cx="480" cy="180" r="38" stroke="#3ee0c8" stroke-width="8" stroke-dasharray="190" stroke-dashoffset="80" stroke-linecap="round" fill="none" opacity="0.8"/>
+
+  <circle cx="590" cy="180" r="38" stroke="#253545" stroke-width="8" fill="none"/>
+  <circle cx="590" cy="180" r="38" stroke="#3ee0c8" stroke-width="8" stroke-dasharray="160" stroke-dashoffset="40" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+  <!-- Dumbbell / Workout Icon -->
+  <g transform="translate(440, 360)" fill="url(#fitAccent)">
+    <rect x="0" y="10" width="80" height="8" rx="4"/>
+    <rect x="-12" y="2" width="12" height="24" rx="4"/>
+    <rect x="-24" y="6" width="10" height="16" rx="3"/>
+    <rect x="80" y="2" width="12" height="24" rx="4"/>
+    <rect x="94" y="6" width="10" height="16" rx="3"/>
   </g>
-
-  <!-- CPU / IoT Core Icon -->
-  <g transform="translate(432, 222)" filter="url(#glowEffect)">
-    <rect x="0" y="0" width="96" height="96" rx="16" fill="url(#traceGrad)" fill-opacity="0.2" stroke="#3ee0c8" stroke-width="2"/>
-    <circle cx="48" cy="48" r="20" fill="url(#traceGrad)"/>
-    <circle cx="48" cy="48" r="8" fill="#090e13"/>
-  </g>
-
-  <!-- Activity Status LED -->
-  <circle cx="400" cy="190" r="5" fill="#3ee0c8" filter="url(#glowEffect)"/>
 
   <!-- Bottom Details & Tag -->
-  <rect x="360" y="485" width="240" height="38" rx="19" fill="#080c10" stroke="#3ee0c8" stroke-width="1.5" stroke-opacity="0.4"/>
-  <text x="480" y="509" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="13" fill="#3ee0c8" letter-spacing="3">EMBEDDED • IOT • C/C++</text>
+  <rect x="360" y="490" width="240" height="38" rx="19" fill="#080c10" stroke="#3ee0c8" stroke-width="1.5" stroke-opacity="0.4"/>
+  <text x="480" y="514" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="12" fill="#3ee0c8" letter-spacing="2.5">FITNESS • WORKOUT TRACKER</text>
 </svg>

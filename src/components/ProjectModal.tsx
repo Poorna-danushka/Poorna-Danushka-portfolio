@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { ExternalLink, X } from 'lucide-react'
-import { Github } from './icons'
+import { Github, Linkedin } from './icons'
 import type { Project } from '../types/portfolio'
 import { useFocusTrap } from '../hooks/useFocusTrap'
 import { isPlaceholder } from '../lib/utils'
@@ -20,6 +20,7 @@ export function ProjectModal({ project, onClose }: Props) {
 
   const github = isPlaceholder(project.links.github) ? undefined : project.links.github
   const live = isPlaceholder(project.links.live) ? undefined : project.links.live
+  const isLinkedIn = Boolean(live && (live.includes('linkedin.com') || live.includes('lnkd.in')))
 
   return createPortal(
     <div className="fixed inset-0 z-[80] flex items-end justify-center p-3 sm:items-center sm:p-6">
@@ -140,9 +141,9 @@ export function ProjectModal({ project, onClose }: Props) {
               <Github size={16} />
               GitHub
             </Button>
-            <Button href={live} variant="secondary" external disabled={!live} ariaLabel="Live demo">
-              <ExternalLink size={16} />
-              Live Demo
+            <Button href={live} variant="secondary" external disabled={!live} ariaLabel={isLinkedIn ? 'LinkedIn post' : 'Live demo'}>
+              {isLinkedIn ? <Linkedin size={16} /> : <ExternalLink size={16} />}
+              {isLinkedIn ? 'LinkedIn Post' : 'Live Demo'}
             </Button>
           </div>
           <Button variant="ghost" onClick={onClose} ariaLabel="Close dialog">
