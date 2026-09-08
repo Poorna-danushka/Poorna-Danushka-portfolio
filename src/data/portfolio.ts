@@ -44,7 +44,7 @@ export const portfolio: PortfolioData = {
     { id: 'about', label: 'About' },
     { id: 'education', label: 'Education' },
     { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
+    { id: 'projects', label: 'Work' },
     { id: 'journey', label: 'Journey' },
     { id: 'contact', label: 'Contact' },
   ],
