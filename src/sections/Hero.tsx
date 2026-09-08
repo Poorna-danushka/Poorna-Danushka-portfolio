@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowDownRight, ArrowRight, MapPin } from 'lucide-react'
+import { ArrowDown, ArrowDownRight, ArrowRight, FileDown, MapPin } from 'lucide-react'
 import { motion } from 'motion/react'
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
@@ -119,6 +119,10 @@ export function Hero() {
               <ArrowDownRight size={15} />
             </Button>
           </motion.div>
+          <Button href={portfolio.cvUrl} variant="secondary" className="mt-3 w-full max-w-xs sm:mt-4 sm:max-w-sm">
+            Download CV
+            <FileDown size={15} />
+          </Button>
 
           {/* 8. SOCIAL LINKS (with padding after buttons) */}
           <motion.div
@@ -190,7 +194,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             transition={{ delay: reduced ? 0 : 0.34 }}
-            className="mt-8 flex items-center gap-4"
+            className="mt-8 flex flex-wrap items-center gap-4"
           >
             <Button onClick={() => scrollToId('projects')}>
               View My Work
@@ -199,6 +203,10 @@ export function Hero() {
             <Button variant="secondary" onClick={() => scrollToId('contact')}>
               Let's Connect
               <ArrowDownRight size={16} />
+            </Button>
+            <Button href={portfolio.cvUrl} variant="secondary">
+              Download CV
+              <FileDown size={16} />
             </Button>
           </motion.div>
           <motion.div

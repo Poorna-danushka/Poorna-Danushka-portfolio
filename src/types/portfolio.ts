@@ -108,6 +108,7 @@ export type Person = {
 
 export type PortfolioData = {
   person: Person
+  cvUrl: string
   seo: {
     title: string
     description: string

@@ -14,8 +14,8 @@ export function Education() {
               <TimelineItem
                 key={entry.id}
                 eyebrow={entry.status}
-                title={entry.institution}
-                subtitle={entry.qualification}
+                title={entry.qualification}
+                subtitle={entry.institution}
                 location={entry.location}
                 description={entry.description}
                 subjects={entry.subjects}

@@ -35,8 +35,15 @@ export function TimelineItem({
           <span className="absolute -left-[1.55rem] top-5 h-[calc(100%+1.5rem)] w-px bg-border md:left-[-1.85rem]" aria-hidden />
         ) : null}
         <div className="rounded-3xl border border-border bg-elevated/80 p-5">
-          <h3 className="text-lg font-semibold">{title}</h3>
-          {subtitle ? <p className="mt-1 text-sm text-muted">{subtitle}</p> : null}
+          <h3 className="text-lg font-bold text-fg">{title}</h3>
+          {subtitle ? (
+            <p className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-accent/10 px-2.5 py-1 text-sm font-semibold text-accent">
+              <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0h5m-5 0V10m0 0H9m3 0h3m-3 0V6" />
+              </svg>
+              <span>{subtitle}</span>
+            </p>
+          ) : null}
           <p className="mt-3 text-sm leading-relaxed text-muted">{description}</p>
           {subjects && subjects.length > 0 ? (
             <ul className="mt-4 flex flex-wrap gap-2">

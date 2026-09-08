@@ -20,6 +20,7 @@ export const portfolio: PortfolioData = {
       'https://res.cloudinary.com/dbmjoemmg/image/upload/v1787297880/WhatsApp_Image_2026-08-21_at_13.01.28_tlf6bd.jpg',
     profileImageAlt: 'Poorna Danushka Jayasundara, arms crossed in a dark suit',
   },
+  cvUrl: 'https://drive.google.com/uc?export=download&id=1XeGCrdqCZWyNlO10vrmmhCy76v24TpMe',
   seo: {
     title: 'Poorna Danushka Jayasundara | Full-Stack Developer',
     description:
@@ -62,10 +63,28 @@ export const portfolio: PortfolioData = {
   ],
   education: [
     {
+      id: 'uom',
+      status: 'Currently Studying',
+      institution: 'University of Moratuwa',
+      qualification: 'B.Sc. (Hons) in Information Technology',
+      location: 'Sri Lanka',
+      description:
+        'Pursuing an honours degree in Information Technology with a focus on software engineering, systems, and building production-quality applications.',
+    },
+    {
+      id: 'stemlink',
+      status: 'Currently Studying',
+      institution: 'STEM Link Sri Lanka',
+      qualification: 'Full-Stack Product Engineer Professional Certification',
+      location: 'Sri Lanka',
+      description:
+        'Enrolled in an intensive Full-Stack Product Engineer bootcamp alongside university studies. Focused on mastering end-to-end web and cross-platform mobile product development—from product discovery to cloud deployment—using React 19, TypeScript, Tailwind CSS, Node.js, Express, PostgreSQL, Prisma, Supabase, and React Native.',
+    },
+    {
       id: 'al',
       status: 'Completed',
-      institution: 'G.C.E. Advanced Level',
-      qualification: 'Physical Science Stream',
+      institution: 'Thakshila College, Gampaha',
+      qualification: 'G.C.E. Advanced Level — Physical Science Stream',
       location: 'Sri Lanka',
       description:
         'Completed the G.C.E. Advanced Level examination in the Physical Science stream, building a strong foundation in mathematics and the sciences ahead of university.',
@@ -74,15 +93,6 @@ export const portfolio: PortfolioData = {
         { name: 'Physics', grade: 'B' },
         { name: 'Chemistry', grade: 'B' },
       ],
-    },
-    {
-      id: 'uom',
-      status: 'Currently Studying',
-      institution: 'University of Moratuwa',
-      qualification: 'B.Sc. (Hons) in Information Technology',
-      location: 'Sri Lanka',
-      description:
-        'Pursuing an honours degree in Information Technology with a focus on software engineering, systems, and building production-quality applications.',
     },
   ],
   skills: [
@@ -184,6 +194,13 @@ export const portfolio: PortfolioData = {
       context: 'Vercel, Render, AWS',
       description:
         'Experience deploying full-stack systems and cloud databases using AWS RDS, Amazon S3, Cloudinary, Vercel, and Render.',
+    },
+    {
+      id: 'stemlink-bootcamp',
+      title: 'Full-Stack Product Engineering',
+      context: 'STEM Link Bootcamp',
+      description:
+        'Mastering production-grade full-stack web and mobile product engineering alongside university studies, building domain-specific SaaS workflows with React 19, TypeScript, Node.js, Express, PostgreSQL, Prisma, Supabase, and React Native.',
     },
   ],
   services: [
@@ -325,49 +342,62 @@ export const portfolio: PortfolioData = {
       imageAlt: 'Visual preview for the Orbit Workspace project management platform',
     },
     {
-      id: 'fitness-app',
+      id: 'titanfit-pro',
       number: '03',
-      title: 'FitPulse - Fitness & Workout Web Platform',
-      year: '2025',
+      title: 'TitanFit Pro - Enterprise Gym & Fitness Web Platform',
+      year: '2026',
       category: 'Full-Stack Web App',
-      role: 'Full-Stack Developer',
+      role: 'Full-Stack Architecture & Security Lead',
       description:
-        'A modern fitness and workout tracking web application designed to help users log workouts, monitor exercise routines, and track fitness milestones.',
+        'An enterprise-grade full-stack gym and fitness management platform featuring multi-role administration, Stripe payments, AI workout assistance (Gemini 1.5 Flash), automated AWS S3 backups, and HttpOnly JWT security.',
       overview:
-        'FitPulse is a responsive fitness and exercise tracking platform developed to streamline daily workout management, routine planning, and training regimen analytics with an intuitive, mobile-friendly interface.',
+        'TitanFit Pro is a comprehensive fitness center management platform engineered with Node.js, Express, MongoDB Atlas, and React 19. It streamlines daily gym operations, trainer scheduling, membership subscriptions, automated expiration alerts via Nodemailer, Stripe payment processing, and secure automated AWS S3 MongoDB database snapshot backups.',
       myContributions: [
-        'Workout & Routine Tracker: Built workout logging workflows, exercise directory filtering, and customizable training schedule plans.',
-        'Analytics & Progress Metrics: Designed visual tracking for personal fitness goals, workout frequency, and performance progress statistics.',
-        'Interactive UI & State Management: Developed an ultra-responsive frontend with modern UI components and smooth user interactions.',
-        'REST API & Data Persistence: Integrated backend services and database persistence for secure workout history and user profiles.',
+        'Security & Auth Architecture: Designed HttpOnly cookie JWT authentication, 7-day refresh tokens, double-submit CSRF defense, rate limiting, and brute-force account lockout protection.',
+        'Stripe & Financial Integration: Integrated Stripe API for online membership subscriptions, payment transaction logs, and package renewal workflows.',
+        'AI Assistant & Email Automation: Integrated Google Gemini 1.5 Flash API for AI fitness guidance and Nodemailer cron jobs for automated membership expiration alerts.',
+        'AWS S3 Cloud Backups & Infrastructure: Implemented automated MongoDB database snapshot backups to AWS S3 storage with custom retention scheduler policies.',
       ],
       problem:
-        'Individuals often struggle with maintaining consistent fitness habits due to cumbersome tracking tools, lack of routine organization, and scattered workout records.',
+        'Gyms face administrative bottlenecks with manual membership tracking, uncoordinated trainer schedules, insecure payment logs, and missing automated data backup systems.',
       solution:
-        'A streamlined web application providing organized workout schedules, exercise guidance, and progress tracking in a clean, accessible interface.',
+        'A unified, role-governed platform connecting Admins, Trainers, and Members with automated email alerts, Stripe payments, Gemini AI fitness assistance, and automated AWS S3 backups.',
       challenges: '',
       learnings:
-        'Mastered modular web component design, responsive UI architectures, and dynamic fitness telemetry state management.',
+        'Mastered React 19 with Vite & Tailwind CSS v4, Express REST API architecture with Mongoose, Stripe payments, Gemini AI integration, and automated AWS S3 backup systems.',
       technologies: [
-        'React',
+        'React 19',
         'TypeScript',
-        'Tailwind CSS',
+        'Vite 8',
+        'Tailwind CSS v4',
         'Node.js',
-        'REST API',
-        'JavaScript',
+        'Express.js',
+        'MongoDB Atlas',
+        'Mongoose',
+        'Stripe API',
+        'Google Gemini AI',
+        'AWS S3',
+        'JWT (HttpOnly)',
+        'CSRF Protection',
+        'Nodemailer',
+        'Framer Motion',
+        'Recharts',
       ],
       features: [
-        'Comprehensive Exercise & Routine Library',
-        'Daily Workout Logging & Set/Rep Tracking',
-        'Fitness Progress Analytics & Milestone Tracking',
-        'Responsive Mobile-First Interface',
+        'Multi-Role Portals (Admin, Trainer, Member Governance)',
+        'Stripe Payment Gateway & Subscription Management',
+        'AI Fitness Assistant powered by Google Gemini 1.5 Flash',
+        'Automated AWS S3 Database Snapshot Backups',
+        'Automated Membership Expiration Cron & Email Alerts',
+        'Forgot Password OTP & Mandatory Password Reset Guards',
+        'HttpOnly Cookie JWT Security & Double-Submit CSRF Defense',
       ],
       links: {
-        github: 'https://github.com/Poorna-danushka/fitness_app.git',
-        live: 'YOUR_FITNESS_LIVE_URL',
+        github: 'https://github.com/Poorna-danushka/TitanFit-PRO-Web-Platform.git',
+        live: 'https://titan-fit-pro-web-platform.vercel.app',
       },
-      image: '/images/projects/embedded.svg',
-      imageAlt: 'Visual preview for the FitPulse Fitness & Workout Platform project',
+      image: 'https://res.cloudinary.com/dbmjoemmg/image/upload/v1787822342/ChatGPT_Image_Aug_27_2026_02_47_47_PM_s31evn.png',
+      imageAlt: 'Visual preview for the TitanFit Pro Enterprise Gym & Fitness Web Platform project',
     },
     {
       id: 'chess-robot',
