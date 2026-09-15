@@ -20,7 +20,7 @@ export const portfolio: PortfolioData = {
       'https://res.cloudinary.com/dbmjoemmg/image/upload/v1787297880/WhatsApp_Image_2026-08-21_at_13.01.28_tlf6bd.jpg',
     profileImageAlt: 'Poorna Danushka Jayasundara, arms crossed in a dark suit',
   },
-  cvUrl: 'https://drive.google.com/uc?export=download&id=1XeGCrdqCZWyNlO10vrmmhCy76v24TpMe',
+  cvUrl: 'https://drive.google.com/file/d/11_5-S_9vGlT4YLxybxYdISBpOlh59g51/view?usp=drive_link',
   seo: {
     title: 'Poorna Danushka Jayasundara | Full-Stack Developer',
     description:
