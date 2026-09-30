@@ -7,13 +7,14 @@ export function ProfileMark({ className }: { className?: string }) {
   const alt = portfolioImageAlts.hero || (portfolio.person.profileImageAlt ?? `${portfolio.person.name} portrait`)
 
   return (
-    <div className={cn('relative mx-auto w-full max-w-md', className)}>
-      <div className="portrait-wash absolute -inset-8" aria-hidden />
-      <div className="relative overflow-hidden border border-border bg-elevated shadow-[0_30px_100px_var(--glow)] [clip-path:polygon(8%_0,100%_0,92%_100%,0_100%)]">
-        {src ? <img src={src} alt={alt} className="aspect-[4/5] w-full object-cover object-center saturate-[.9]" width={960} height={1200} fetchPriority="high" /> : <div className="grid aspect-[4/5] place-items-center"><p className="font-display text-5xl text-accent">PD</p></div>}
+    <div className={cn('relative', className)}>
+      <div className="portrait-frame relative overflow-hidden rounded-[2rem] border border-border bg-elevated shadow-[0_28px_90px_var(--glow)]">
+        <div className="portrait-wash pointer-events-none absolute inset-0 z-10" aria-hidden />
+        {src ? <img src={src} alt={alt} className="aspect-[4/5] w-full object-cover object-center transition duration-700 hover:scale-[1.03]" width={960} height={1200} fetchPriority="high" /> : <div className="grid aspect-[4/5] place-items-center"><p className="font-display text-5xl text-accent">PD</p></div>}
+        <div className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black/75 to-transparent px-6 pb-5 pt-20 text-white"><p className="font-mono text-[10px] uppercase tracking-[.2em] text-white/70">Poorna Danushka Jayasundara</p><p className="mt-1 text-sm">Full-stack developer</p></div>
       </div>
-      <div className="absolute -bottom-5 -left-5 size-20 border-b border-l border-accent" aria-hidden />
-      <div className="absolute -right-3 top-8 size-6 rounded-full border border-accent bg-bg" aria-hidden />
+      <div className="portrait-corner absolute -bottom-4 -left-4 size-20 rounded-bl-3xl border-b border-l border-accent" aria-hidden />
+      <div className="absolute -right-4 top-8 rounded-full border border-accent bg-bg px-3 py-2 font-mono text-[9px] uppercase tracking-[.16em] text-accent">Sri Lanka</div>
     </div>
   )
 }

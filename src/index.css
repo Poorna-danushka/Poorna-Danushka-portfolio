@@ -62,9 +62,9 @@ body {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
-.hero-shell { background: radial-gradient(circle at 75% 42%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 28%), linear-gradient(115deg, transparent 0 48%, color-mix(in oklab, var(--surface) 60%, transparent) 48% 48.2%, transparent 48.2%); }
-.hero-orbit { position: absolute; width: min(72vw, 760px); aspect-ratio: 1; right: -24vw; top: 8%; border: 1px solid color-mix(in oklab, var(--accent) 32%, transparent); border-radius: 50%; box-shadow: 0 0 0 24px color-mix(in oklab, var(--accent) 5%, transparent), 0 0 0 80px color-mix(in oklab, var(--accent) 3%, transparent); }
-.portrait-wash { background: linear-gradient(135deg, var(--accent), transparent 55%); opacity: .22; filter: blur(32px); }
+.hero-shell { background: radial-gradient(circle at 72% 38%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 27%), var(--background); }
+.hero-grid { position: absolute; inset: 0; opacity: .45; background-image: linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px); background-size: 72px 72px; mask-image: linear-gradient(to bottom, black, transparent 80%); }
+.portrait-wash { background: linear-gradient(145deg, var(--accent), transparent 62%); opacity: .18; mix-blend-mode: screen; }
 
 .section-band { background: color-mix(in oklab, var(--surface) 60%, transparent); }
 .eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: .68rem; font-weight: 700; color: var(--accent); }

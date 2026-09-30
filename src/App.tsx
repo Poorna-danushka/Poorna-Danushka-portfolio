@@ -8,6 +8,7 @@ import { Hero } from './sections/Hero'
 import { Journey } from './sections/Journey'
 import { Projects } from './sections/Projects'
 import { Skills } from './sections/Skills'
+import { TechnologyStrip } from './components/TechnologyStrip'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
       <main id="main">
         <Hero />
         <About />
+        <TechnologyStrip />
         <Education />
         <Skills />
         <Projects />
