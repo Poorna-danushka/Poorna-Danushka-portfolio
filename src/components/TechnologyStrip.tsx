@@ -22,36 +22,50 @@ export function TechnologyStrip() {
   const reduced = usePrefersReducedMotion()
   const selectedStack = ['React', 'TypeScript', 'JavaScript', 'Node.js', 'NestJS', 'PostgreSQL', 'AWS', 'Python', 'Git', 'Flutter']
   const technologies = selectedStack.filter((name) => logos[name])
+  const loop = [...technologies, ...technologies]
 
   return (
-    <div className="border-y border-border bg-elevated/50 py-6 sm:py-7">
+    <section aria-labelledby="tools-heading" className="border-y border-border bg-elevated/50 py-7 sm:py-9">
       <Container>
-        <div className="mb-5 flex items-center gap-3">
-          <span className="size-2 rounded-full bg-accent" aria-hidden="true" />
-          <p className="eyebrow">Tools I build with</p>
-        </div>
         <motion.div
-          initial={reduced ? false : { opacity: 0, y: 12 }}
+          initial={reduced ? false : { opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-12"
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-5 flex items-end justify-between gap-4"
         >
-          {technologies.map((name) => (
-            <div
-              key={name}
-              className="group flex min-h-24 flex-col items-center justify-center gap-2 rounded-2xl border border-border bg-bg/60 px-2 py-3 transition duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-bg"
-            >
-              <img
-                src={logos[name]}
-                alt={`${name} logo`}
-                className="size-8 object-contain grayscale transition duration-300 group-hover:grayscale-0"
-                loading="lazy"
-              />
-              <span className="text-center text-[11px] font-medium leading-tight text-muted group-hover:text-fg">{name}</span>
-            </div>
-          ))}
+          <div className="flex items-center gap-3">
+            <motion.span
+              aria-hidden="true"
+              className="size-2 rounded-full bg-accent"
+              animate={reduced ? undefined : { scale: [1, 1.5, 1], opacity: [1, 0.55, 1] }}
+              transition={reduced ? undefined : { duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <h2 id="tools-heading" className="eyebrow">Tools I build with</h2>
+          </div>
+          <span className="hidden font-mono text-[10px] uppercase tracking-[.18em] text-muted sm:block">Selected stack</span>
         </motion.div>
+
+        <div className="tools-marquee" aria-label="Technology stack">
+          <motion.div
+            className="tools-marquee-track"
+            animate={reduced ? undefined : { x: ['0%', '-50%'] }}
+            transition={reduced ? undefined : { duration: 30, repeat: Infinity, ease: 'linear' }}
+          >
+            {loop.map((name, index) => (
+              <motion.div
+                key={`${name}-${index}`}
+                whileHover={reduced ? undefined : { y: -7, scale: 1.04 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+                className="tools-card group"
+              >
+                <span className="tools-card-icon"><img src={logos[name]} alt="" aria-hidden="true" loading="lazy" /></span>
+                <span>{name}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </Container>
-    </div>
+    </section>
   )
 }
