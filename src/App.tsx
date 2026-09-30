@@ -1,4 +1,5 @@
 import { Footer } from './components/Footer'
+import { Engineering } from './sections/Engineering'
 import { Navbar } from './components/Navbar'
 import { About } from './sections/About'
 import { Contact } from './sections/Contact'
@@ -24,6 +25,7 @@ export default function App() {
         <Education />
         <Skills />
         <Projects />
+        <Engineering />
         <Journey />
         <Contact />
       </main>

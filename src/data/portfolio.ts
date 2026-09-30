@@ -1,4 +1,5 @@
 import type { PortfolioData } from '../types/portfolio'
+import { portfolioImages, portfolioImageAlts } from './images'
 
 export const PLACEHOLDER_PREFIX = 'YOUR_'
 
@@ -16,9 +17,8 @@ export const portfolio: PortfolioData = {
     university: 'University of Moratuwa',
     degree: 'B.Sc. (Hons) in Information Technology',
     location: 'Gampaha, Sri Lanka',
-    profileImage:
-      'https://res.cloudinary.com/dbmjoemmg/image/upload/v1787297880/WhatsApp_Image_2026-08-21_at_13.01.28_tlf6bd.jpg',
-    profileImageAlt: 'Poorna Danushka Jayasundara, arms crossed in a dark suit',
+    profileImage: portfolioImages.hero,
+    profileImageAlt: portfolioImageAlts.hero,
   },
   cvUrl: 'https://drive.google.com/file/d/11_5-S_9vGlT4YLxybxYdISBpOlh59g51/view?usp=drive_link',
   seo: {
@@ -45,6 +45,7 @@ export const portfolio: PortfolioData = {
     { id: 'education', label: 'Education' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Work' },
+    { id: 'engineering', label: 'Approach' },
     { id: 'journey', label: 'Journey' },
     { id: 'contact', label: 'Contact' },
   ],

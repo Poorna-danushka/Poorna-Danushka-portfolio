@@ -1,9 +1,10 @@
 import { portfolio } from '../data/portfolio'
+import { portfolioImages, portfolioImageAlts } from '../data/images'
 import { cn } from '../lib/utils'
 
 export function ProfileMark({ className }: { className?: string }) {
-  const src = portfolio.person.profileImage
-  const alt = portfolio.person.profileImageAlt ?? `${portfolio.person.name} portrait`
+  const src = portfolioImages.hero || portfolio.person.profileImage
+  const alt = portfolioImageAlts.hero || (portfolio.person.profileImageAlt ?? `${portfolio.person.name} portrait`)
 
   return (
     <div className={cn('relative mx-auto w-full max-w-md', className)}>
