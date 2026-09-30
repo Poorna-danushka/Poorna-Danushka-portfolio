@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowRight, FileDown, MapPin } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, FileDown, MapPin } from 'lucide-react'
 import { motion } from 'motion/react'
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
@@ -14,30 +14,36 @@ export function Hero() {
   const { person } = portfolio
 
   return (
-    <section id="home" className="relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 lg:min-h-[100svh] lg:pt-32 lg:pb-10">
-      <div className="grid-bg pointer-events-none absolute inset-0 opacity-30" aria-hidden />
-      <Container className="relative grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(340px,0.72fr)] lg:gap-20">
-        <div>
-          <motion.p variants={fadeUp(reduced)} initial="hidden" animate="visible" className="eyebrow flex items-center gap-3"><span className="h-px w-8 bg-accent" aria-hidden />Available for opportunities</motion.p>
-          <motion.h1 variants={fadeUp(reduced)} initial="hidden" animate="visible" transition={{ delay: reduced ? 0 : 0.08 }} className="mt-6 max-w-3xl font-display text-[clamp(3.2rem,8vw,7.5rem)] leading-[.92] tracking-[-.05em]">Hi, I&apos;m <span className="text-accent">{person.firstName}.</span></motion.h1>
-          <motion.p variants={fadeUp(reduced)} initial="hidden" animate="visible" transition={{ delay: reduced ? 0 : 0.16 }} className="mt-7 max-w-xl text-xl font-medium tracking-tight sm:text-2xl">{person.shortTitle}</motion.p>
-          <motion.p variants={fadeUp(reduced)} initial="hidden" animate="visible" transition={{ delay: reduced ? 0 : 0.22 }} className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">{person.heroDescription} I care about clear architecture, thoughtful interfaces, and software that holds up in the real world.</motion.p>
-          <motion.div variants={fadeUp(reduced)} initial="hidden" animate="visible" transition={{ delay: reduced ? 0 : 0.28 }} className="mt-8 flex flex-wrap gap-3">
-            <Button onClick={() => scrollToId('projects')}>View selected work <ArrowRight size={16} /></Button>
-            <Button variant="secondary" onClick={() => scrollToId('contact')}>Let&apos;s connect <ArrowDownRight size={16} /></Button>
-            <Button href={portfolio.cvUrl} variant="ghost" external>Resume <FileDown size={16} /></Button>
+    <section id="home" className="hero-shell relative overflow-hidden pt-28 pb-12 sm:pt-36 lg:min-h-[calc(100svh-4.5rem)] lg:pt-24 lg:pb-8">
+      <div className="hero-orbit" aria-hidden="true" />
+      <Container className="relative grid items-end gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-8">
+        <div className="relative z-10 pb-2 lg:pb-16">
+          <motion.div variants={fadeUp(reduced)} initial="hidden" animate="visible" className="mb-8 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[.2em] text-accent">
+            <span className="inline-block size-2 rounded-full bg-accent shadow-[0_0_18px_var(--accent)]" /> Available for select projects
           </motion.div>
-          <motion.div variants={fadeUp(reduced)} initial="hidden" animate="visible" transition={{ delay: reduced ? 0 : 0.34 }} className="mt-8 flex flex-wrap items-center gap-4 text-xs text-muted sm:text-sm">
-            <span className="inline-flex items-center gap-2"><MapPin size={14} className="text-accent" />{person.location}</span><span className="h-4 w-px bg-border" aria-hidden /><span>{person.university}</span>
+          <motion.p variants={fadeUp(reduced)} initial="hidden" animate="visible" className="mb-4 font-mono text-xs uppercase tracking-[.24em] text-muted">01 — Introduction</motion.p>
+          <motion.h1 variants={fadeUp(reduced)} initial="hidden" animate="visible" transition={{ delay: reduced ? 0 : .08 }} className="max-w-4xl font-display text-[clamp(4.2rem,10.5vw,10.5rem)] leading-[.78] tracking-[-.075em]">
+            Poorna<br /><span className="text-accent">Danushka</span>
+          </motion.h1>
+          <motion.div variants={fadeUp(reduced)} initial="hidden" animate="visible" transition={{ delay: reduced ? 0 : .16 }} className="mt-9 grid max-w-2xl gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
+            <p className="max-w-md text-lg leading-relaxed text-muted sm:text-xl">{person.heroDescription} I build digital products that feel as considered as they function.</p>
+            <div className="hidden text-right font-mono text-[10px] uppercase leading-loose tracking-[.18em] text-muted sm:block">Full-stack<br />engineering<br /><span className="text-accent">with intent</span></div>
           </motion.div>
-          <motion.div variants={fadeUp(reduced)} initial="hidden" animate="visible" transition={{ delay: reduced ? 0 : 0.4 }} className="mt-7"><SocialLinks /></motion.div>
+          <motion.div variants={fadeUp(reduced)} initial="hidden" animate="visible" transition={{ delay: reduced ? 0 : .24 }} className="mt-8 flex flex-wrap gap-3">
+            <Button onClick={() => scrollToId('projects')}>Explore my work <ArrowUpRight data-icon="inline-end" /></Button>
+            <Button href={portfolio.cvUrl} variant="secondary" external>Resume <FileDown data-icon="inline-end" /></Button>
+          </motion.div>
+          <motion.div variants={fadeUp(reduced)} initial="hidden" animate="visible" transition={{ delay: reduced ? 0 : .3 }} className="mt-10 flex flex-wrap items-center gap-4 text-xs text-muted">
+            <span className="inline-flex items-center gap-2"><MapPin className="text-accent" />{person.location}</span><span className="h-4 w-px bg-border" aria-hidden /><span>{person.university}</span>
+          </motion.div>
         </div>
-        <motion.div variants={scaleIn(reduced)} initial="hidden" animate="visible" className="relative mx-auto w-full max-w-[520px] lg:ml-auto">
-          <div className="absolute -right-8 top-8 hidden border border-border bg-bg/80 px-4 py-3 text-xs backdrop-blur sm:block"><span className="block text-accent">01 / 04</span><span className="mt-1 block text-muted">Selected portrait</span></div>
+        <motion.div variants={scaleIn(reduced)} initial="hidden" animate="visible" className="relative mx-auto w-full max-w-[530px] lg:mr-0">
+          <div className="portrait-label absolute -left-4 top-12 z-20 hidden -rotate-90 origin-left font-mono text-[10px] uppercase tracking-[.2em] text-muted sm:block">Portrait / 2026</div>
           <ProfileMark />
-          <div className="mt-4 flex items-center justify-between border-t border-border pt-3 text-[10px] font-semibold uppercase tracking-[.2em] text-muted"><span>Software engineer</span><span>2026</span></div>
+          <div className="mt-4 flex items-center justify-between border-t border-border pt-3 font-mono text-[10px] uppercase tracking-[.2em] text-muted"><span>Based in {person.location}</span><button type="button" onClick={() => scrollToId('about')} className="inline-flex items-center gap-2 text-accent transition-transform hover:translate-x-1">Scroll to explore <ArrowDown /></button></div>
         </motion.div>
       </Container>
+      <div className="absolute bottom-6 right-8 hidden lg:block"><SocialLinks /></div>
     </section>
   )
 }

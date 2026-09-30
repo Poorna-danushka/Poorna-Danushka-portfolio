@@ -22,9 +22,9 @@
   --foreground: #171817;
   --muted: #6b6d67;
   --border: rgb(23 24 23 / 0.13);
-  --accent: #a8653c;
-  --accent-foreground: #fffaf5;
-  --glow: rgb(168 101 60 / 0.18);
+  --accent: #3157ff;
+  --accent-foreground: #ffffff;
+  --glow: rgb(49 87 255 / 0.22);
   color-scheme: light;
 }
 
@@ -35,9 +35,9 @@
   --foreground: #f1f0eb;
   --muted: #a3a79d;
   --border: rgb(241 240 235 / 0.14);
-  --accent: #d49a72;
-  --accent-foreground: #21140d;
-  --glow: rgb(212 154 114 / 0.2);
+  --accent: #8ea3ff;
+  --accent-foreground: #0b1028;
+  --glow: rgb(142 163 255 / 0.24);
   color-scheme: dark;
 }
 
@@ -62,10 +62,9 @@ body {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
-.grid-bg {
-  background-image: linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse at center, black 18%, transparent 74%);
-}
+.hero-shell { background: radial-gradient(circle at 75% 42%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 28%), linear-gradient(115deg, transparent 0 48%, color-mix(in oklab, var(--surface) 60%, transparent) 48% 48.2%, transparent 48.2%); }
+.hero-orbit { position: absolute; width: min(72vw, 760px); aspect-ratio: 1; right: -24vw; top: 8%; border: 1px solid color-mix(in oklab, var(--accent) 32%, transparent); border-radius: 50%; box-shadow: 0 0 0 24px color-mix(in oklab, var(--accent) 5%, transparent), 0 0 0 80px color-mix(in oklab, var(--accent) 3%, transparent); }
+.portrait-wash { background: linear-gradient(135deg, var(--accent), transparent 55%); opacity: .22; filter: blur(32px); }
+
 .section-band { background: color-mix(in oklab, var(--surface) 60%, transparent); }
 .eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: .68rem; font-weight: 700; color: var(--accent); }
