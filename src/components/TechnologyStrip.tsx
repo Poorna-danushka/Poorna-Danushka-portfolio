@@ -43,14 +43,13 @@ export function TechnologyStrip() {
             />
             <h2 id="tools-heading" className="eyebrow">Tools I build with</h2>
           </div>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[.18em] text-muted sm:block">Selected stack</span>
         </motion.div>
 
         <div className="tools-marquee" aria-label="Technology stack">
           <motion.div
             className="tools-marquee-track"
             animate={reduced ? undefined : { x: ['0%', '-50%'] }}
-            transition={reduced ? undefined : { duration: 30, repeat: Infinity, ease: 'linear' }}
+            transition={reduced ? undefined : { duration: 24, repeat: Infinity, ease: 'linear' }}
           >
             {loop.map((name, index) => (
               <motion.div
