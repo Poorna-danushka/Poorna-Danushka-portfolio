@@ -9,7 +9,7 @@ export function About() {
   const reduced = usePrefersReducedMotion()
 
   return (
-    <section id="about" className="py-20 sm:py-28">
+    <section id="about" className="py-20 sm:py-28 lg:pt-16">
       <Container>
         <SectionHeading
           eyebrow="Developer Identity"

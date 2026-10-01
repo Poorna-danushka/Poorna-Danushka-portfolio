@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X, FileText, Sparkles } from 'lucide-react'
 import { portfolio } from '../data/portfolio'
 import { useActiveSection } from '../hooks/useActiveSection'
+import { useFocusTrap } from '../hooks/useFocusTrap'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { useScrolled } from '../hooks/useScrolled'
 import { cn, scrollToId } from '../lib/utils'
@@ -10,6 +11,7 @@ import { ThemeToggle } from './ThemeToggle'
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
   const ids = portfolio.navigation.map((item) => item.id)
   const active = useActiveSection(ids)
   const scrolled = useScrolled()
@@ -23,25 +25,7 @@ export function Navbar() {
     closeMobile()
   }
 
-  // Handle ESC key to close mobile drawer
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && mobileOpen) {
-        closeMobile()
-      }
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [mobileOpen, closeMobile])
-
-  // Prevent scroll when mobile drawer is open
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-  }, [mobileOpen])
+  useFocusTrap(mobileOpen, mobileMenuRef, closeMobile)
 
   return (
     <>
@@ -53,7 +37,7 @@ export function Navbar() {
       >
         <div
           className={cn(
-            'mx-auto flex max-w-[1440px] items-center justify-between rounded-full border px-4 py-2.5 transition-all duration-300',
+            'mx-auto flex max-w-[1440px] items-center justify-between rounded-2xl border px-3 py-2 transition-all duration-300 sm:rounded-full sm:px-4 sm:py-2.5',
             scrolled
               ? 'border-border bg-background/85 shadow-lg backdrop-blur-xl'
               : 'border-transparent bg-background/40 backdrop-blur-md',
@@ -63,13 +47,10 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => go('home')}
-            className="group flex items-center gap-2.5 text-left focus:outline-none"
+            className="group min-w-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             aria-label="Poorna Danushka Portfolio Home"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-accent-fg font-bold text-sm shadow-md transition-transform duration-300 group-hover:scale-105">
-              PD
-            </div>
-            <span className="hidden font-display text-base font-bold tracking-tight text-foreground sm:inline-block">
+            <span className="truncate font-display text-sm font-bold tracking-tight text-foreground sm:text-base">
               Poorna Danushka
             </span>
           </button>
@@ -122,14 +103,15 @@ export function Navbar() {
           </div>
 
           {/* Mobile Right Controls (Theme Toggle + Hamburger) */}
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
             <button
               type="button"
               onClick={toggleMobile}
               aria-label={mobileOpen ? 'Close menu' : 'Open navigation menu'}
               aria-expanded={mobileOpen}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:border-accent"
+              aria-controls="mobile-navigation-menu"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface text-foreground shadow-sm transition hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -153,6 +135,11 @@ export function Navbar() {
 
             {/* Slide-Down Menu Drawer */}
             <motion.div
+              ref={mobileMenuRef}
+              id="mobile-navigation-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -167,7 +154,8 @@ export function Navbar() {
                 <button
                   type="button"
                   onClick={closeMobile}
-                  className="rounded-full p-1 text-muted hover:text-foreground"
+                  aria-label="Close navigation menu"
+                  className="rounded-full p-2 text-muted transition hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   <X size={18} />
                 </button>
@@ -179,6 +167,7 @@ export function Navbar() {
                     <button
                       type="button"
                       onClick={() => go(item.id)}
+                      aria-current={active === item.id ? 'page' : undefined}
                       className={cn(
                         'flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition',
                         active === item.id

@@ -24,8 +24,8 @@ export default function App() {
       <main id="main">
         <Hero />
         <About />
-        <Education />
         <Skills />
+        <Education />
         <Projects />
         <EngineeringApproach />
         <Journey />

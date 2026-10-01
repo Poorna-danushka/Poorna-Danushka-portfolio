@@ -9,7 +9,7 @@ export function Skills() {
   const reduced = usePrefersReducedMotion()
 
   return (
-    <section id="skills" className="relative overflow-hidden py-16 sm:py-20 lg:flex lg:min-h-[100svh] lg:items-center lg:py-16">
+    <section id="skills" className="relative overflow-hidden py-16 sm:py-20 lg:flex lg:min-h-[100svh] lg:items-center lg:pt-16 lg:pb-8">
       <Container>
         <OrbitalTechRadar technologies={curatedTechnologies} projects={portfolio.projects} />
 

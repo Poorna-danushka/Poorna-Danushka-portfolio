@@ -18,7 +18,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-14 sm:pt-16 lg:pt-20"
+      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-14 sm:pt-16 lg:min-h-[88svh] lg:pt-24"
     >
       <HeroBackdrop />
 

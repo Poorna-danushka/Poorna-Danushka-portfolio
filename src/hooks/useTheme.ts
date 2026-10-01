@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const STORAGE_KEY = 'theme'
+const THEME_CHANGE_EVENT = 'portfolio-theme-change'
 
 export type Theme = 'dark' | 'light'
 
@@ -25,6 +26,15 @@ export function useTheme() {
   const [theme, setThemeState] = useState<Theme>(getPreferredTheme)
 
   useEffect(() => {
+    const syncTheme = (event: Event) => {
+      const next = (event as CustomEvent<Theme>).detail
+      if (next === 'dark' || next === 'light') setThemeState(next)
+    }
+    window.addEventListener(THEME_CHANGE_EVENT, syncTheme)
+    return () => window.removeEventListener(THEME_CHANGE_EVENT, syncTheme)
+  }, [])
+
+  useEffect(() => {
     applyTheme(theme)
   }, [theme])
 
@@ -36,6 +46,7 @@ export function useTheme() {
     } catch {
       /* ignore */
     }
+    window.dispatchEvent(new CustomEvent<Theme>(THEME_CHANGE_EVENT, { detail: next }))
   }
 
   const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
