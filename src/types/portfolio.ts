@@ -12,6 +12,7 @@ export type SocialLink = {
 export type Stat = {
   value: string
   label: string
+  detail?: string
 }
 
 export type EducationSubject = {
@@ -29,17 +30,53 @@ export type EducationEntry = {
   subjects?: EducationSubject[]
 }
 
-export type SkillLevel = 'Comfortable' | 'Familiar' | 'Learning'
+export type SkillCategory =
+  | 'Languages'
+  | 'Frontend'
+  | 'Backend'
+  | 'Databases'
+  | 'Security'
+  | 'Cloud & DevOps'
+  | 'Tools'
+  | 'Embedded & AI'
+
+export type SkillLevel = 'Experienced' | 'Academic / Familiar' | 'Learning'
 
 export type Skill = {
   name: string
-  level?: SkillLevel
+  level?: string
+}
+
+export type TechBrandInfo = {
+  name: string
+  color: string
+  category: string
+  level: string
+  iconKey: string
+  description: string
+}
+
+export type TechnologyItem = {
+  name: string
+  category: SkillCategory
+  level: SkillLevel
+  iconKey: string
+  description?: string
 }
 
 export type SkillGroup = {
   id: string
   title: string
-  skills: Skill[]
+  category: SkillCategory
+  skills: TechnologyItem[]
+}
+
+export type EngineeringStep = {
+  step: string
+  title: string
+  subtitle: string
+  description: string
+  tags: string[]
 }
 
 export type JourneyEntry = {
@@ -67,13 +104,14 @@ export type Project = {
   title: string
   year: string
   category: string
+  subtitle?: string
   role?: string
   myContributions?: string[]
   description: string
   overview: string
   problem: string
   solution: string
-  challenges: string
+  challenges?: string
   learnings: string
   technologies: string[]
   features: string[]
@@ -120,7 +158,8 @@ export type PortfolioData = {
   stats: Stat[]
   currentlyLearning: string[]
   education: EducationEntry[]
-  skills: SkillGroup[]
+  allTechnologies: TechnologyItem[]
+  engineeringSteps: EngineeringStep[]
   journey: JourneyEntry[]
   services: Service[]
   projects: Project[]

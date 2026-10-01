@@ -1,0 +1,70 @@
+{
+  "specType": "feature",
+  "workflowType": "requirements-first",
+  "featureName": "mobile-hero-ux-optimization",
+  "createdAt": "2026-10-02T00:00:00.000Z",
+  "version": "1.0.0",
+  "status": "design-complete",
+  "metadata": {
+    "description": "Mobile-first UX optimization for Hero section with responsive design, accessibility compliance, and performance enhancements",
+    "category": "Frontend/UX",
+    "priority": "high",
+    "estimatedComplexity": "medium",
+    "targetDevices": [
+      "iPhone SE (320px)",
+      "iPhone 12/13/14 (390px)", 
+      "iPhone 14 Pro Max (430px)",
+      "Galaxy S8+ (360px)",
+      "iPad Mini (768px)",
+      "Desktop (1024px+)"
+    ],
+    "keyTechnologies": [
+      "React",
+      "TypeScript", 
+      "Tailwind CSS",
+      "Framer Motion",
+      "Mobile-First Design",
+      "WCAG 2.1 AAA",
+      "Performance Optimization"
+    ],
+    "breakpoints": {
+      "xs": "320px",
+      "xs-enhanced": "380px", 
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1280px",
+      "2xl": "1536px"
+    },
+    "testingStrategy": {
+      "unit": "Responsive utilities, calculations",
+      "integration": "Component behavior across breakpoints",
+      "visual": "Playwright cross-browser screenshots", 
+      "performance": "Core Web Vitals compliance",
+      "accessibility": "WCAG 2.1 AAA automated + manual",
+      "devices": "Real device testing matrix"
+    }
+  },
+  "requirements": {
+    "mobile-first": "Design from 320px up with progressive enhancement",
+    "touch-targets": "Minimum 44px touch areas per WCAG AAA",
+    "performance": "60fps animations, <2.5s LCP on mobile 3G",
+    "accessibility": "WCAG 2.1 AAA compliance, screen reader optimized",
+    "visual-hierarchy": "Name → Role → CTA → Visual → Trust signals",
+    "content-strategy": "Essential content above fold on mobile"
+  },
+  "implementation": {
+    "approach": "Progressive enhancement from mobile baseline",
+    "components": [
+      "Hero.tsx",
+      "ProfileMark.tsx", 
+      "Button.tsx",
+      "Container.tsx",
+      "TypewriterText.tsx",
+      "SocialLinks.tsx"
+    ],
+    "responsive-strategy": "Mobile-first Tailwind utilities with custom breakpoints",
+    "animation-strategy": "Performance-aware with reduced motion support",
+    "error-handling": "Graceful degradation with fallback components"
+  }
+}

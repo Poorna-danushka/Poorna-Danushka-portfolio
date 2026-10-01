@@ -5,6 +5,7 @@ const STORAGE_KEY = 'theme'
 export type Theme = 'dark' | 'light'
 
 function getPreferredTheme(): Theme {
+  if (typeof window === 'undefined') return 'dark'
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (stored === 'dark' || stored === 'light') return stored
@@ -15,20 +16,17 @@ function getPreferredTheme(): Theme {
 }
 
 function applyTheme(theme: Theme): void {
+  if (typeof document === 'undefined') return
   document.documentElement.classList.toggle('dark', theme === 'dark')
   document.documentElement.style.colorScheme = theme
 }
 
 export function useTheme() {
-  const [theme, setThemeState] = useState<Theme>(() =>
-    document.documentElement.classList.contains('dark') ? 'dark' : 'light',
-  )
+  const [theme, setThemeState] = useState<Theme>(getPreferredTheme)
 
   useEffect(() => {
-    const initial = getPreferredTheme()
-    setThemeState(initial)
-    applyTheme(initial)
-  }, [])
+    applyTheme(theme)
+  }, [theme])
 
   const setTheme = (next: Theme) => {
     setThemeState(next)

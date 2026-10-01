@@ -1,38 +1,47 @@
 import { portfolio } from '../data/portfolio'
-import { scrollToId } from '../lib/utils'
-import { Container } from './Container'
 import { SocialLinks } from './SocialLinks'
+import { scrollToId } from '../lib/utils'
 
 export function Footer() {
   return (
-    <footer className="border-t border-border py-12">
-      <Container className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-        <div>
-          <p className="font-display text-2xl">{portfolio.person.name}</p>
-          <p className="mt-2 text-sm text-muted">{portfolio.person.shortTitle}</p>
-          <SocialLinks className="mt-5" />
+    <footer className="border-t border-border bg-background py-12 text-foreground">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Brand Info */}
+          <div className="text-center md:text-left space-y-1">
+            <h3 className="font-display text-lg font-bold tracking-tight text-foreground">
+              Poorna Danushka Jayasundara
+            </h3>
+            <p className="text-xs font-semibold text-accent">Full-Stack Developer & Software Engineer</p>
+          </div>
+
+          {/* Quick Nav Links */}
+          <nav aria-label="Footer Navigation">
+            <ul className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-muted">
+              {portfolio.navigation.map((item) => (
+                <li key={item.id}>
+                  <button
+                    type="button"
+                    onClick={() => scrollToId(item.id)}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Social Links */}
+          <div>
+            <SocialLinks />
+          </div>
         </div>
-        <nav aria-label="Footer">
-          <ul className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
-            {portfolio.navigation.map((item) => (
-              <li key={item.id}>
-                <button
-                  type="button"
-                  onClick={() => scrollToId(item.id)}
-                  className="text-muted transition hover:text-fg"
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </Container>
-      <Container className="mt-10">
-        <p className="text-sm text-muted">
-          © 2026 {portfolio.person.name}. All rights reserved.
-        </p>
-      </Container>
+
+        <div className="mt-8 border-t border-border/60 pt-6 text-center text-xs text-muted">
+          <p>© 2026 Poorna Danushka Jayasundara. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
   )
 }

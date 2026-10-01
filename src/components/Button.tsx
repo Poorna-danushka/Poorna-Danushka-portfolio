@@ -20,22 +20,22 @@ export function Button({
   variant = 'primary',
   type = 'button',
   className,
-  disabled,
+  disabled = false,
   ariaLabel,
   external,
 }: ButtonProps) {
   const styles = cn(
-    'inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-wide transition duration-300',
-    'hover:scale-[1.02] active:scale-[0.98] motion-reduce:transform-none disabled:pointer-events-none disabled:opacity-50',
+    'inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-wide transition duration-300 select-none cursor-pointer',
+    'hover:scale-[1.02] active:scale-[0.98] motion-reduce:transform-none disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed',
     variant === 'primary' &&
       'bg-accent text-accent-fg shadow-[0_10px_30px_var(--glow)] hover:shadow-[0_14px_36px_var(--glow)]',
     variant === 'secondary' &&
-      'border border-border bg-elevated/70 text-fg hover:border-accent/40',
-    variant === 'ghost' && 'text-muted hover:text-fg',
+      'border border-border bg-elevated/70 text-fg hover:border-accent/40 hover:bg-elevated',
+    variant === 'ghost' && 'text-muted hover:text-fg hover:bg-surface/50',
     className,
   )
 
-  if (href) {
+  if (href && !disabled) {
     return (
       <a
         href={href}
@@ -49,7 +49,13 @@ export function Button({
   }
 
   return (
-    <button type={type} onClick={onClick} className={styles} disabled={disabled} aria-label={ariaLabel}>
+    <button
+      type={type}
+      onClick={disabled ? undefined : onClick}
+      className={styles}
+      disabled={disabled}
+      aria-label={ariaLabel}
+    >
       {children}
     </button>
   )

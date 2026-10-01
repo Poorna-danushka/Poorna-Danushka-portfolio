@@ -1,8 +1,7 @@
 import { motion } from 'motion/react'
 import { Container } from '../components/Container'
-import { SectionHeading } from '../components/SectionHeading'
-import { SkillCard } from '../components/SkillCard'
-import { portfolio } from '../data/portfolio'
+import { OrbitalTechRadar } from '../components/OrbitalTechRadar'
+import { curatedTechnologies, portfolio, toolbelt } from '../data/portfolio'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { fadeUp, stagger } from '../lib/motion'
 
@@ -10,34 +9,41 @@ export function Skills() {
   const reduced = usePrefersReducedMotion()
 
   return (
-    <section id="skills" className="py-16 sm:py-24 lg:py-32">
+    <section id="skills" className="relative overflow-hidden py-16 sm:py-20 lg:flex lg:min-h-[100svh] lg:items-center lg:py-16">
       <Container>
-        <SectionHeading
-          eyebrow="Capabilities"
-          title="Technical Skills"
-          description="Technologies grouped by how I use them — without fake percentage scores."
-        />
+        <OrbitalTechRadar technologies={curatedTechnologies} projects={portfolio.projects} />
+
         <motion.div
-          variants={stagger(reduced, 0.06)}
+          variants={fadeUp(reduced)}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          className="mt-8 grid gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mt-10 sm:mt-12 lg:hidden"
         >
-          {portfolio.skills.map((group) => (
-            <motion.article
-              key={group.id}
-              variants={fadeUp(reduced)}
-              className="rounded-3xl border border-border bg-elevated/80 p-5 sm:p-6 transition hover:-translate-y-0.5 hover:border-accent/30 motion-reduce:transform-none"
-            >
-              <h3 className="text-base font-semibold sm:text-lg">{group.title}</h3>
-              <div className="mt-3 flex flex-wrap gap-2 sm:mt-4">
-                {group.skills.map((skill) => (
-                  <SkillCard key={skill.name} {...skill} />
-                ))}
-              </div>
-            </motion.article>
-          ))}
+          <div className="flex items-center gap-4">
+            <h3 className="font-display text-xl font-semibold tracking-tight text-fg sm:text-2xl">
+              Also in the toolbelt
+            </h3>
+            <span aria-hidden className="h-px flex-1 bg-border" />
+            <span className="font-mono text-xs font-semibold text-muted">{toolbelt.length} more</span>
+          </div>
+          <motion.ul
+            variants={stagger(reduced, 0.035)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="no-scrollbar mt-5 flex flex-wrap gap-2.5 lg:flex-nowrap lg:overflow-x-auto"
+          >
+            {toolbelt.map((item) => (
+              <motion.li
+                key={item}
+                variants={fadeUp(reduced)}
+                className="shrink-0 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 font-mono text-xs font-medium text-muted transition duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:text-fg"
+              >
+                {item}
+              </motion.li>
+            ))}
+          </motion.ul>
         </motion.div>
       </Container>
     </section>

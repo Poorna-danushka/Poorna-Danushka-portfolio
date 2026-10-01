@@ -1,137 +1,162 @@
+import { motion } from 'motion/react'
 import { ArrowUpRight, ExternalLink } from 'lucide-react'
-import { Github, Linkedin } from './icons'
+import { Github } from './icons'
 import type { Project } from '../types/portfolio'
-import { cn, isPlaceholder } from '../lib/utils'
-import { Button } from './Button'
+import { isPlaceholder } from '../lib/utils'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 
 type Props = {
   project: Project
   onOpen: (project: Project) => void
+  inactive?: boolean
 }
 
-export function ProjectCard({ project, onOpen }: Props) {
+export function ProjectCard({ project, onOpen, inactive = false }: Props) {
+  const reduced = usePrefersReducedMotion()
   const github = isPlaceholder(project.links.github) ? undefined : project.links.github
   const live = isPlaceholder(project.links.live) ? undefined : project.links.live
-  const featured = Boolean(project.featured)
-  const isLinkedIn = Boolean(live && (live.includes('linkedin.com') || live.includes('lnkd.in')))
 
   return (
-    <article
-      className={cn(
-        'group relative flex h-full flex-col overflow-hidden rounded-2xl sm:rounded-3xl border border-border bg-elevated/90 backdrop-blur-sm transition-all duration-300',
-        'hover:-translate-y-1.5 hover:border-accent/45 hover:shadow-[0_20px_45px_var(--glow)] motion-reduce:transform-none',
-      )}
-    >
-      {/* Wider Full-bleed Media Container */}
-      <div className="relative aspect-[16/8] w-full overflow-hidden border-b border-border/50 bg-bg/50">
-        <img
-          src={project.image}
-          alt={project.imageAlt}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
-        />
-
-        {/* Ambient Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-
-        {/* Top Badges */}
-        <div className="absolute left-3.5 right-3.5 top-3 flex items-center justify-between gap-2 pointer-events-none">
-          <span className="inline-flex items-center rounded-full bg-black/60 px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-white backdrop-blur-md border border-white/15 shadow-sm">
+    <div className="h-full">
+      <motion.article
+        whileHover={reduced ? undefined : inactive ? { y: -4 } : { y: -6 }}
+        whileTap={reduced ? undefined : { scale: 0.99 }}
+        transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-md transition-all duration-300 hover:border-accent/45 hover:shadow-xl hover:shadow-accent/10"
+      >
+        {/* Window Chrome Header Bar */}
+        <div className="flex items-center gap-2 border-b border-border/70 bg-bg/75 px-4 py-2.5 backdrop-blur-sm">
+          <span aria-hidden className="flex items-center gap-1.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-400/80 transition-opacity group-hover:opacity-100" />
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80 transition-opacity group-hover:opacity-100" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80 transition-opacity group-hover:opacity-100" />
+          </span>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation()
+              onOpen(project)
+            }}
+            className="mx-1 min-w-0 flex-1 truncate rounded-md border border-border/50 bg-surface/60 px-2.5 py-0.5 font-mono text-[10px] text-muted transition hover:border-accent/50 hover:text-accent"
+          >
+            https://{project.id}.dev
+          </button>
+          <span className="font-mono text-[10px] font-bold text-muted transition-colors duration-300 group-hover:text-accent">
             {project.number}
           </span>
-          {featured ? (
-            <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2.5 py-0.5 text-[11px] font-semibold text-accent-fg shadow-sm">
-              Featured
+        </div>
+
+        {/* Card Thumbnail Image Area - Studio Showcase Box (Fits full image inside without cropping) */}
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-950 p-2.5 sm:p-3.5 flex items-center justify-center border-b border-border/60">
+          <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--accent)_14%,transparent),transparent_70%)]" />
+          
+          <img
+            src={project.image}
+            alt={project.imageAlt}
+            loading="lazy"
+            className="h-full w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          />
+
+          {/* Floating Badges */}
+          <div className="absolute inset-x-3 top-3 flex items-center justify-between gap-2 pointer-events-none z-10">
+            <span className="rounded-full border border-white/20 bg-black/75 px-2.5 py-0.5 font-mono text-[10px] font-bold text-white backdrop-blur-md shadow-sm">
+              {project.year}
             </span>
-          ) : (
-            <span className="inline-flex items-center rounded-full bg-black/60 px-2.5 py-0.5 text-[11px] font-medium text-white/90 backdrop-blur-md border border-white/15 shadow-sm">
+            <span className="rounded-full border border-accent/40 bg-accent/90 px-2.5 py-0.5 text-[10px] font-bold text-white backdrop-blur-md shadow-sm">
               {project.category}
             </span>
-          )}
-        </div>
-
-        {/* Year Pill */}
-        <div className="absolute bottom-2.5 right-3.5 pointer-events-none">
-          <span className="inline-flex items-center rounded-md bg-black/60 px-2 py-0.5 text-[11px] font-semibold text-white/90 backdrop-blur-md border border-white/15">
-            {project.year}
-          </span>
-        </div>
-      </div>
-
-      {/* Card Content - Compact & Streamlined */}
-      <div className="flex flex-1 flex-col justify-between p-4.5 sm:p-5.5">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
-            <span>{project.category}</span>
           </div>
 
-          <h3 className="font-display text-lg sm:text-xl font-bold leading-snug text-fg transition-colors group-hover:text-accent line-clamp-1">
+          <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-2 pointer-events-none z-10">
+            <div className="min-w-0 flex-1 rounded-xl border border-white/10 bg-black/75 px-3 py-1 backdrop-blur-md">
+              <p className="truncate text-[11px] font-medium text-white/95">{project.subtitle}</p>
+            </div>
+            <span className="hidden shrink-0 rounded-xl bg-accent px-2.5 py-1 text-[10px] font-bold text-accent-fg shadow-md transition-all duration-300 group-hover:inline-flex">
+              {inactive ? 'Focus' : 'Explore'}
+            </span>
+          </div>
+        </div>
+
+        {/* Card Content & Meta */}
+        <div className="flex flex-1 flex-col p-5 sm:p-6">
+          <h3 className="font-display text-xl font-bold leading-snug tracking-tight text-fg transition-colors duration-200 group-hover:text-accent sm:text-2xl">
             {project.title}
           </h3>
-
-          <p className="text-xs sm:text-sm leading-relaxed text-muted line-clamp-2 min-h-[2.5rem]">
+          <p className="mt-2.5 line-clamp-3 text-xs leading-relaxed text-muted sm:text-sm sm:leading-relaxed">
             {project.description}
           </p>
 
-          {/* Technologies Chips */}
-          <div className="pt-0.5">
-            {project.technologies.length > 0 ? (
-              <ul className="flex flex-wrap gap-1.5" aria-label="Technologies used">
-                {project.technologies.slice(0, 4).map((tech) => (
-                  <li
-                    key={tech}
-                    className="rounded-md border border-border/80 bg-bg/75 px-2 py-0.5 text-[11px] font-medium text-fg/90"
-                  >
-                    {tech}
-                  </li>
-                ))}
-                {project.technologies.length > 4 ? (
-                  <li className="rounded-md border border-border/60 bg-bg/40 px-1.5 py-0.5 text-[11px] font-medium text-muted">
-                    +{project.technologies.length - 4} more
-                  </li>
-                ) : null}
-              </ul>
-            ) : null}
+          <div className="mt-4 flex flex-wrap content-start gap-1.5">
+            {project.technologies.slice(0, 5).map((tech) => (
+              <span
+                key={tech}
+                className="rounded-lg border border-border/80 bg-bg/80 px-2.5 py-1 text-[10px] font-medium text-fg"
+              >
+                {tech}
+              </span>
+            ))}
+            {project.technologies.length > 5 && (
+              <span className="rounded-lg border border-dashed border-border px-2 py-1 text-[10px] font-medium text-muted">
+                +{project.technologies.length - 5}
+              </span>
+            )}
+          </div>
+
+          {/* Action Row */}
+          <div className="relative z-20 mt-auto flex items-center gap-2 border-t border-border/70 pt-4">
+            {github && (
+              <a
+                href={github}
+                target="_blank"
+                rel="noreferrer noopener"
+                title="View Source Code on GitHub"
+                aria-label={`${project.title} GitHub repository`}
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1.5 rounded-full border border-border bg-bg/60 px-3 py-1 text-xs font-semibold text-muted transition hover:border-accent hover:text-accent hover:bg-accent/10"
+              >
+                <Github size={13} />
+                <span>Code</span>
+              </a>
+            )}
+            {live && (
+              <a
+                href={live}
+                target="_blank"
+                rel="noreferrer noopener"
+                title={live.includes('linkedin') ? 'View LinkedIn Post' : 'View Live Demo'}
+                aria-label={`${project.title} live demo`}
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1.5 rounded-full border border-border bg-bg/60 px-3 py-1 text-xs font-semibold text-muted transition hover:border-accent hover:text-accent hover:bg-accent/10"
+              >
+                <ExternalLink size={13} />
+                <span>{live.includes('linkedin') ? 'Post' : 'Live'}</span>
+              </a>
+            )}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                onOpen(project)
+              }}
+              className="ml-auto inline-flex items-center gap-1 rounded-full bg-accent/15 px-3 py-1 text-xs font-bold text-accent transition hover:bg-accent hover:text-accent-fg shadow-sm"
+            >
+              Case study
+              <ArrowUpRight
+                size={13}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </button>
           </div>
         </div>
 
-        {/* Card Actions Footer */}
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-border/50 pt-3.5">
-          <div className="flex items-center gap-1.5">
-            <Button
-              variant="secondary"
-              href={github}
-              external
-              disabled={!github}
-              className="px-3 py-1.5 text-xs opacity-90 group-hover:opacity-100"
-              ariaLabel={github ? `${project.title} GitHub repository` : `${project.title} GitHub not available`}
-            >
-              <Github size={14} />
-              <span className="hidden min-[380px]:inline">GitHub</span>
-            </Button>
-            <Button
-              variant="secondary"
-              href={live}
-              external
-              disabled={!live}
-              className="px-3 py-1.5 text-xs opacity-90 group-hover:opacity-100"
-              ariaLabel={live ? (isLinkedIn ? `${project.title} LinkedIn post` : `${project.title} live demo`) : `${project.title} live link not available`}
-            >
-              {isLinkedIn ? <Linkedin size={14} /> : <ExternalLink size={14} />}
-              <span className="hidden min-[380px]:inline">{isLinkedIn ? 'LinkedIn' : 'Live'}</span>
-            </Button>
-          </div>
-
-          <Button
-            variant="primary"
-            onClick={() => onOpen(project)}
-            className="px-3.5 py-1.5 text-xs sm:text-sm font-semibold opacity-95 group-hover:opacity-100 shadow-sm"
-          >
-            <span>Details</span>
-            <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Button>
-        </div>
-      </div>
-    </article>
+        {/* Full Card Trigger Overlay */}
+        <button
+          type="button"
+          onClick={() => onOpen(project)}
+          aria-label={`Open ${project.title} case study`}
+          className="absolute inset-0 z-10 cursor-pointer rounded-[inherit] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
+        />
+      </motion.article>
+    </div>
   )
 }
