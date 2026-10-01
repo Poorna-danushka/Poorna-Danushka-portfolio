@@ -107,7 +107,7 @@ export function Hero() {
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-surface/60 backdrop-blur-sm px-2.5 sm:px-3 py-1.5 shadow-sm transition hover:border-accent/40">
                 <Sparkles size={12} className="text-accent shrink-0" />
-                <span className="font-semibold">UoM · 2026</span>
+                <span className="font-semibold">University of Moratuwa · 2026</span>
               </span>
             </motion.div>
 
