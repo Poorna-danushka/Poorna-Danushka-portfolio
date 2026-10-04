@@ -31,9 +31,13 @@ export function Contact() {
     }
 
     try {
-      await submitContact(data)
-      setStatus({ type: 'success', message: 'Thank you! Your message has been sent successfully.' })
-      form.reset()
+      const result = await submitContact(data)
+      if (result.ok) {
+        setStatus({ type: 'success', message: 'Thank you! Your message has been sent successfully.' })
+        form.reset()
+      } else {
+        setStatus({ type: 'error', message: result.message || 'Unable to send message. Please use the email button below.' })
+      }
     } catch {
       setStatus({ type: 'error', message: 'Unable to send message directly. Please use the email button below.' })
     } finally {

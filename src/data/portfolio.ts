@@ -544,7 +544,7 @@ export const portfolio: PortfolioData = {
     {
       id: 'learnova',
       number: '02',
-      title: 'Learnova (Nexora)',
+      title: 'Learnova',
       subtitle: 'AI-Assisted Student Learning & Mobile App Platform',
       year: '2026',
       category: 'Full-Stack Mobile App',
