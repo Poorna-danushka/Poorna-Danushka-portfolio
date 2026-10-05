@@ -318,7 +318,7 @@ export const portfolio: PortfolioData = {
     profileImage: portfolioImages.hero,
     profileImageAlt: portfolioImages.heroAlt,
   },
-  cvUrl: 'https://drive.google.com/file/d/11_5-S_9vGlT4YLxybxYdISBpOlh59g51/view?usp=drive_link',
+  cvUrl: 'https://drive.google.com/file/d/1vkpsENb0f0PQaGPb0YRQe3VxOWt5T7gM/view?usp=drive_link',
   seo: {
     title: 'Poorna Danushka | Full-Stack Developer & Software Engineer',
     description:
